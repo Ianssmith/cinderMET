@@ -38,9 +38,11 @@ void Model::parsejson(DataSourceRef file){
         const JsonTree json( file );
         ////const JsonTree json( loadUrl(url) );
         //cout << json << endl;
-        for( auto &feature : json["1"]){//.getChildren() ){
+        //for(int i=0;i<=50*4;i++){
+            for( auto &feature : json["objects"].getChildren() ){
             cout << feature << endl;
-        }
+            }
+        //}
     }
     catch( ci::Exception &exc ) {
         cout << "Failed to load file: " << exc.what() <<endl;
