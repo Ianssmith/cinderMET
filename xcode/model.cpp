@@ -7,6 +7,8 @@
 #include "cinder/params/Params.h"
 #include "Controller.hpp"
 #include "Model.hpp"
+#include <iostream>
+#include <vector>
 
 
 using namespace ci;
@@ -40,10 +42,22 @@ void Model::parsejson(DataSourceRef file){
         //cout << json << endl;
         //for(int i=0;i<=50*4;i++){
             for( auto &feature : json["objects"].getChildren() ){
-            cout << feature << endl;
+                //auto &Dates = feature["Object Begin Date"];
+                beginDates.push_back(feature["Object Begin Date"].getValue<int>());
+                endDates.push_back(feature["Object End Date"].getValue<int>());
+                donationDates.push_back(feature["Donation_Date"].getValue<int>());
+                cout<<beginDates[0]<<endl;
+            //cout << feature["Object Begin Date"].getValue<int>() << endl;
             }
         //}
     }
+   
+//auto &coords = feature["geometry"]["coordinates"];
+//float mag = feature["properties"]["mag"].getValue<float>();
+//const string &title = feature["properties"]["title"].getValue();
+//mEarth.addQuake( coords[0].getValue<float>(), coords[1].getValue<float>(), mag, title );
+    
+    
     catch( ci::Exception &exc ) {
         cout << "Failed to load file: " << exc.what() <<endl;
     }

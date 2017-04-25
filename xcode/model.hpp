@@ -17,6 +17,9 @@ public:
     void parsejson( DataSourceRef file);
     Model();
     ~Model();
+    std::vector<int> beginDates;
+    std::vector<int> endDates;
+    std::vector<int> donationDates;
     
     void setup();
 };
