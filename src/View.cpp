@@ -7,6 +7,7 @@
 //
 
 #include "View.h"
+#include "cinder/MayaCamUI.h"
 
 using namespace ci;
 using namespace ci::app;
