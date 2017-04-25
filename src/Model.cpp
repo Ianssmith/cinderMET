@@ -2,21 +2,16 @@
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 #include "cinder/Json.h"
-#include "cinder/Url.h"
 #include "cinder/DataSource.h"
-#include "cinder/Filesystem.h"
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
 #include "cinder/Utilities.h"
 #include "cinder/params/Params.h"
+#include "Controller.h"
 
 using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-class cinderMETApp : public App {
+class Model : public App {
   public:
     
 	void setup() override;
@@ -31,33 +26,33 @@ public:
 };
 
 
-void cinderMETApp::setup()
+void Model::setup()
 {
     //parsejson("https://raw.githubusercontent.com/Ianssmith/cinderMET/master/resources/met/mathjson.json");
     parsejson(DataSourceRef( ci::app::loadAsset("mathjson.json")));
 }
 
-void cinderMETApp::mouseDown( MouseEvent event )
+void Model::mouseDown( MouseEvent event )
 {
 }
 
-void cinderMETApp::update()
+void Model::update()
 {
 }
 
-void cinderMETApp::draw()
+void Model::draw()
 {
 	gl::clear( Color( 0, 0, 0 ) ); 
 }
 
 
-void cinderMETApp::parsejson(DataSourceRef file){
-//void cinderMETApp::parsejson(const string &url){
+void Model::parsejson(DataSourceRef file){
+//void Model::parsejson(const string &url){
     try{
         const JsonTree json( file );
         ////const JsonTree json( loadUrl(url) );
         //cout << json << endl;
-        for( auto &feature : json["1"]["Link Resource"]){//.getChildren() ){
+        for( auto &feature : json["1"]){//.getChildren() ){
             cout << feature << endl;
         }
     }
@@ -67,4 +62,4 @@ void cinderMETApp::parsejson(DataSourceRef file){
 }
 
 
-CINDER_APP( cinderMETApp, RendererGl )
+CINDER_APP( Model, RendererGl )
