@@ -33,6 +33,7 @@ void Model::setup()
     //parsejson("https://raw.githubusercontent.com/Ianssmith/cinderMET/master/resources/met/mathjson.json");
     parsejson(DataSourceRef( ci::app::loadAsset("mathjson.json")));
     convertYears();
+    mController.drawPrimitives(beginDates, endDates, donationDates);
     //cout<<beginDates[0]<<endl;
 }
 
@@ -50,10 +51,9 @@ void Model::parsejson(DataSourceRef file){
                 beginDates.push_back(feature["Object Begin Date"].getValue<float>());
                 endDates.push_back(feature["Object End Date"].getValue<float>());
                 donationDates.push_back(feature["Donation_Date"][0].getValue<float>());
-                cout<<beginDates[0]<<endl;
+                //cout<<beginDates[0]<<endl;
             //cout << feature["Object Begin Date"].getValue<int>() << endl;
             }
-                mController.drawPrimitives(beginDates, endDates, donationDates);
         //}
     }
    
@@ -72,7 +72,7 @@ void Model::parsejson(DataSourceRef file){
         beginDates[i] = (beginDates[i]*getWindowWidth())/maxdate;
        endDates[i] =  (endDates[i]*getWindowWidth())/maxdate;
        donationDates[i] = (donationDates[i]*getWindowWidth())/maxdate;
-        cout<<beginDates[i]<<endl;
+        //cout<<beginDates[i]<<endl;
         
         
     }

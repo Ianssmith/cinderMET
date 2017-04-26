@@ -4,6 +4,7 @@
 
 #include "Controller.hpp"
 #include "Model.hpp"
+#include "View.hpp"
 
 using namespace ci;
 using namespace ci::app;
@@ -16,7 +17,7 @@ public:
     void update() override;
     void draw() override;
     //void drawPrimitives(vector<float>, vector<float>, vector<float>);
-    //Controller controller;
+    Controller controller;
     Model model;
     int width = 1024;
     int height = 768;
@@ -29,13 +30,15 @@ public:
 
 void METProjectApp::setup()
 {
-    model.setup();
     //model.parsejson();
     //controller.updateView(1);
+    
     setWindowSize( width, height );
+    mFillColor = Color( 1.0f, 1.0f, 1.0f );
+    //model.setup();
     //mCircleCenter = vec2( 500, 200 );
     //mCircleRadius = 100.0f;
-    mFillColor = Color( 1.0f, 1.0f, 1.0f );
+    
 }
 
 void METProjectApp::mouseDown( MouseEvent event )
@@ -49,8 +52,10 @@ void METProjectApp::update()
 
 void METProjectApp::draw()
 {
-    gl::clear( Color( 0, 0, 0 ) );
-    gl::color( mFillColor );
+    model.setup();
+    //gl::clear( Color( 0, 0, 0 ) );
+    //gl::color( mFillColor );
+    //gl::drawSolidCircle(vec2(400,2),5);
     //drawPrimitives(<#vector<float>#>, <#vector<float>#>, <#vector<float>#>)
     
 }
