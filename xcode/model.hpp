@@ -3,7 +3,7 @@
 //  METProject
 //
 //  Created by ian s. smith on 4/25/17.
-//
+//  and Kim Köhler
 //
 
 #ifndef Model_hpp
@@ -17,6 +17,11 @@ public:
     void parsejson( DataSourceRef file);
     Model();
     ~Model();
+    std::vector<float> beginDates;
+    std::vector<float> endDates;
+    std::vector<float> donationDates;
+    
+    Controller mController;
     
     void setup();
 };

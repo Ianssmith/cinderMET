@@ -15,20 +15,32 @@ public:
     void mouseDown( MouseEvent event ) override;
     void update() override;
     void draw() override;
-    Controller controller;
-    Model model;
+    //void drawPrimitives(vector<float>, vector<float>, vector<float>);
+    //Controller controller;
+    //Model model;
+    int width = 1024;
+    int height = 768;
+    
+    vec2 mCircleCenter;
+    float mCircleRadius;
+    Color mFillColor;
 };
+
 
 void METProjectApp::setup()
 {
-    model.setup();
+    //model.setup();
     //model.parsejson();
-    controller.updateView(1);
+    //controller.updateView(1);
+    setWindowSize( width, height );
+    //mCircleCenter = vec2( 500, 200 );
+    //mCircleRadius = 100.0f;
+    mFillColor = Color( 1.0f, 1.0f, 1.0f );
 }
 
 void METProjectApp::mouseDown( MouseEvent event )
 {
-    controller.updateView(2);
+    //controller.updateView(2);
 }
 
 void METProjectApp::update()
@@ -38,7 +50,20 @@ void METProjectApp::update()
 void METProjectApp::draw()
 {
     gl::clear( Color( 0, 0, 0 ) );
+    gl::color( mFillColor );
+    //drawPrimitives(<#vector<float>#>, <#vector<float>#>, <#vector<float>#>)
     
 }
+
+/*
+void drawPrimitives(vector<float> begin, vector<float> end, vector<float> donated){
+    for(int i=0;i<begin.size();i++){
+        vec2 mCircleCenter = vec2(begin[i],i*2);
+        float mCircleRadius = 5;
+        gl::drawSolidCircle( mCircleCenter, mCircleRadius );
+        
+    }
+}
+ */
 
 CINDER_APP( METProjectApp, RendererGl )
