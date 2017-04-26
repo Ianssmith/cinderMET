@@ -47,7 +47,8 @@ void Model::parsejson(DataSourceRef file){
                 endDates.push_back(feature["Object End Date"].getValue<float>());
                 donationDates.push_back(feature["Donation_Date"][0].getValue<float>());
                 //cout<<beginDates[0]<<endl;
-                mController.drawObjects(beginDates, endDates, donationDates);
+                mController.convertYears(beginDates, endDates, donationDates);
+                mController.drawPrimitives(beginDates, endDates, donationDates);
             //cout << feature["Object Begin Date"].getValue<int>() << endl;
             }
         //}

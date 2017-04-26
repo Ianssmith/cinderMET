@@ -3,7 +3,7 @@
 //  METProject
 //
 //  Created by ian s. smith on 4/25/17.
-//
+//  and Kim Köhler
 //
 
 #ifndef Model_hpp

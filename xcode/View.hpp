@@ -3,6 +3,7 @@
 //  cinderMET01
 //
 //  Created by Kim Köhler on 18/04/17.
+//  and Ian Smith
 //
 //
 
@@ -21,6 +22,8 @@ public:
     View();
     //Deconstructor
     ~View();
+    
+    void drawPrimitives(vector<float>, vector<float>, vector<float>);
     
     void update(int info);
     

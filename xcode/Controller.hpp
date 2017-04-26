@@ -3,6 +3,7 @@
 //  cinderMET01
 //
 //  Created by Kim Köhler on 18/04/17.
+//  and Ian Smith
 //
 //
 
@@ -10,6 +11,7 @@
 
 #include <stdio.h>
 #include "View.hpp"
+#include "Model.hpp"
 
 using namespace ci;
 using namespace ci::app;
@@ -24,8 +26,10 @@ public:
     ~Controller();
     
     View view;
+    Model mModel;
     
-    void drawObjects(std::vector<float>, std::vector<float>, std::vector<float>);
+    void convertYears(std::vector<float>, std::vector<float>, std::vector<float>);
+    void drawPrimitives(std::vector<float>, std::vector<float>, std::vector<float>);
     void updateView(int number);
     int mindate = 1400;
     int maxdate = 2017;
