@@ -43,10 +43,11 @@ void Model::parsejson(DataSourceRef file){
         //for(int i=0;i<=50*4;i++){
             for( auto &feature : json["objects"].getChildren() ){
                 //auto &Dates = feature["Object Begin Date"];
-                beginDates.push_back(feature["Object Begin Date"].getValue<int>());
-                endDates.push_back(feature["Object End Date"].getValue<int>());
-                donationDates.push_back(feature["Donation_Date"].getValue<int>());
-                cout<<beginDates[0]<<endl;
+                beginDates.push_back(feature["Object Begin Date"].getValue<float>());
+                endDates.push_back(feature["Object End Date"].getValue<float>());
+                donationDates.push_back(feature["Donation_Date"][0].getValue<float>());
+                //cout<<beginDates[0]<<endl;
+                mController.drawObjects(beginDates, endDates, donationDates);
             //cout << feature["Object Begin Date"].getValue<int>() << endl;
             }
         //}

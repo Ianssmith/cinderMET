@@ -17,6 +17,8 @@ public:
     void draw() override;
     Controller controller;
     Model model;
+    int width = 1024;
+    int height = 768;
 };
 
 void METProjectApp::setup()
@@ -24,6 +26,7 @@ void METProjectApp::setup()
     model.setup();
     //model.parsejson();
     controller.updateView(1);
+    setWindowSize( width, height );
 }
 
 void METProjectApp::mouseDown( MouseEvent event )

@@ -25,7 +25,10 @@ public:
     
     View view;
     
+    void drawObjects(std::vector<float>, std::vector<float>, std::vector<float>);
     void updateView(int number);
+    int mindate = 1400;
+    int maxdate = 2017;
     
 private:
     
