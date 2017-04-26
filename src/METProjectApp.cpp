@@ -17,7 +17,7 @@ public:
     void draw() override;
     //void drawPrimitives(vector<float>, vector<float>, vector<float>);
     //Controller controller;
-    //Model model;
+    Model model;
     int width = 1024;
     int height = 768;
     
@@ -29,7 +29,7 @@ public:
 
 void METProjectApp::setup()
 {
-    //model.setup();
+    model.setup();
     //model.parsejson();
     //controller.updateView(1);
     setWindowSize( width, height );

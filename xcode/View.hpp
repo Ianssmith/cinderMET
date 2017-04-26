@@ -24,6 +24,7 @@ public:
     ~View();
     
     void drawPrimitives(vector<float>, vector<float>, vector<float>);
+    void drawView(vector<float>, vector<float>, vector<float>);
     
     void update(int info);
     

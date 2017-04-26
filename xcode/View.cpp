@@ -23,8 +23,12 @@ View::~View()
     
 }
 
-void View::drawPrimitives(vector<float> begin, vector<float> end, vector<float> donated){
+
+void View::drawView(vector<float> begin, vector<float> end, vector<float> donated){
     for(int i=0;i<begin.size();i++){
+        vec2 mCircleCenter = vec2(begin[i],i*2);
+        float mCircleRadius = 5;
+        gl::drawSolidCircle( mCircleCenter, mCircleRadius );
         
     }
 }

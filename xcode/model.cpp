@@ -15,6 +15,8 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 Controller mController;
+    int mindate = 1400;
+    int maxdate = 2017;
 
 Model::Model(){
     
@@ -30,6 +32,8 @@ void Model::setup()
 {
     //parsejson("https://raw.githubusercontent.com/Ianssmith/cinderMET/master/resources/met/mathjson.json");
     parsejson(DataSourceRef( ci::app::loadAsset("mathjson.json")));
+    convertYears();
+    //cout<<beginDates[0]<<endl;
 }
 
 
@@ -46,11 +50,10 @@ void Model::parsejson(DataSourceRef file){
                 beginDates.push_back(feature["Object Begin Date"].getValue<float>());
                 endDates.push_back(feature["Object End Date"].getValue<float>());
                 donationDates.push_back(feature["Donation_Date"][0].getValue<float>());
-                //cout<<beginDates[0]<<endl;
-                mController.convertYears(beginDates, endDates, donationDates);
-                mController.drawPrimitives(beginDates, endDates, donationDates);
+                cout<<beginDates[0]<<endl;
             //cout << feature["Object Begin Date"].getValue<int>() << endl;
             }
+                mController.drawPrimitives(beginDates, endDates, donationDates);
         //}
     }
    
@@ -59,10 +62,19 @@ void Model::parsejson(DataSourceRef file){
 //const string &title = feature["properties"]["title"].getValue();
 //mEarth.addQuake( coords[0].getValue<float>(), coords[1].getValue<float>(), mag, title );
     
-    
     catch( ci::Exception &exc ) {
         cout << "Failed to load file: " << exc.what() <<endl;
     }
 }
 
+    void Model::convertYears(){
+    for(int i=0;i<beginDates.size();i++){
+        beginDates[i] = (beginDates[i]*getWindowWidth())/maxdate;
+       endDates[i] =  (endDates[i]*getWindowWidth())/maxdate;
+       donationDates[i] = (donationDates[i]*getWindowWidth())/maxdate;
+        cout<<beginDates[i]<<endl;
+        
+        
+    }
+}
 

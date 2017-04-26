@@ -15,6 +15,7 @@ class Model
 {
 public:
     void parsejson( DataSourceRef file);
+    void convertYears();
     Model();
     ~Model();
     std::vector<float> beginDates;

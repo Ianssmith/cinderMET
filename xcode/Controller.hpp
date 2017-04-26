@@ -31,8 +31,6 @@ public:
     void convertYears(std::vector<float>, std::vector<float>, std::vector<float>);
     void drawPrimitives(std::vector<float>, std::vector<float>, std::vector<float>);
     void updateView(int number);
-    int mindate = 1400;
-    int maxdate = 2017;
     
 private:
     
