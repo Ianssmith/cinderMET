@@ -23,8 +23,8 @@ public:
     
     typedef std::map<string, objData> objMap;
     
-    //std::map<string, objData> getArtworks(){return artWorks;};
     objMap getArtworks(){return artWorks;};
+    //std::map<string, objData> getArtworks(){return artWorks;};
     
     initialView getInitial(){return mInitialView};
     
@@ -45,9 +45,6 @@ private:
     objMap parsejson( DataSourceRef);
     objMap artWorks;
     
-    //objData artWorks;
-    
-        //objData parsejson( DataSourceRef file) artWorks;
     
     void setup();
 };

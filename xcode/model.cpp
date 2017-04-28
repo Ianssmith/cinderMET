@@ -68,13 +68,9 @@ void Model::setup()
 
 Model::objMap Model::parsejson(DataSourceRef file){
 //std::map<string, objData> Model::parsejson(DataSourceRef file){
-    //void Model::parsejson(const string &url){
     try{
         const JsonTree json( file );
-        ////const JsonTree json( loadUrl(url) );
-        //cout << json << endl;
             for( auto &feature : json["objects"].getChildren() ){
-                //auto &Dates = feature["Object Begin Date"];
                 //artwork detail data
                 objData artStruct;
                 artStruct.Title = feature["Title"].getValue<string>();
@@ -93,14 +89,9 @@ Model::objMap Model::parsejson(DataSourceRef file){
                 endDates.push_back(feature["Object End Date"].getValue<float>());
                 donationDates.push_back(feature["Donation_Date"][0].getValue<float>());
                 //cout<<beginDates[0]<<endl;
-            //cout << feature["Object Begin Date"].getValue<int>() << endl;
             }
         return artWorks;
     }
-//auto &coords = feature["geometry"]["coordinates"];
-//float mag = feature["properties"]["mag"].getValue<float>();
-//const string &title = feature["properties"]["title"].getValue();
-//mEarth.addQuake( coords[0].getValue<float>(), coords[1].getValue<float>(), mag, title );
     
     catch( ci::Exception &exc ) {
         cout << "Failed to load file: " << exc.what() <<endl;
