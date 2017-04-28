@@ -55,7 +55,8 @@ void METProjectApp::mouseDown( MouseEvent event )
 {
     //controller.updateView(2);
     mModel.setup();
-    mView.showPopup(artWork);
+    //mView.showPopup(artWork);
+    
     //mVisualizer->updateData(std::string name, float year, std::string auther));
     //var = model.getter()
     

@@ -26,7 +26,15 @@ public:
     objMap getArtworks(){return artWorks;};
     //std::map<string, objData> getArtworks(){return artWorks;};
     
-    initialView getInitial(){return mInitialView};
+    
+struct initialView {
+    vector<float> beginDates;
+    vector<float> endDates;
+    vector<float> donationDates;
+    vector<string> linkNum;
+};
+    
+    initialView getInitial(){return mInitialView;};
     
     //float getYear(std::string nameOfArtwork){return year;}
     

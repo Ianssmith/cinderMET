@@ -27,12 +27,6 @@ static string baseurl = "http://www.metmuseum.org/art/collection/search/";
 Model::objMap artWorks;
 //std::map<string, objData> artWorks;
 
-struct initialView {
-    vector<float> beginDates;
-    vector<float> endDates;
-    vector<float> donationDates;
-    vector<string> linkNum;
-};
 
 struct objData {
     string Title;
