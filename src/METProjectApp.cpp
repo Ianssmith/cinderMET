@@ -20,14 +20,16 @@ public:
     
     //VisualizationViewRef mVisualizer;
     //void drawPrimitives(vector<float>, vector<float>, vector<float>);
-    Controller controller;
-    Model model;
+    Controller mController;
+    Model mModel;
+    View mView;
     int width = 1024;
     int height = 768;
     
     vec2 mCircleCenter;
     float mCircleRadius;
     Color mFillColor;
+    Model::objMap artWorks;
 };
 
 
@@ -52,8 +54,8 @@ void METProjectApp::setup()
 void METProjectApp::mouseDown( MouseEvent event )
 {
     //controller.updateView(2);
-    model.setup();
-    
+    mModel.setup();
+    mView.showPopup(artWork);
     //mVisualizer->updateData(std::string name, float year, std::string auther));
     //var = model.getter()
     
@@ -65,6 +67,7 @@ void METProjectApp::update()
 
 void METProjectApp::draw()
 {
+    mView.drawView(initialview);
     //gl::clear( Color( 0, 0, 0 ) );
     //gl::color( mFillColor );
     //gl::drawSolidCircle(vec2(400,2),5);

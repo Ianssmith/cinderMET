@@ -25,6 +25,7 @@ public:
     
     void drawPrimitives(vector<float>, vector<float>, vector<float>);
     void drawView(vector<float>, vector<float>, vector<float>);
+    void showPopup(struct objData);
     
     void update(int info);
     

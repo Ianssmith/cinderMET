@@ -28,8 +28,9 @@ public:
     View view;
     Model mModel;
     
-    void convertYears(std::vector<float>, std::vector<float>, std::vector<float>);
-    void drawPrimitives(std::vector<float>, std::vector<float>, std::vector<float>);
+    //objData popData = mModel.getArtworkData(key);
+    //void convertYears(std::vector<float>, std::vector<float>, std::vector<float>);
+    //void drawPrimitives(std::vector<float>, std::vector<float>, std::vector<float>);
     void updateView(int number);
     
 private:

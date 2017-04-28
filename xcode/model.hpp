@@ -14,19 +14,40 @@
 class Model
 {
 public:
-    void parsejson( DataSourceRef file);
-    void convertYears();
+    
     Model();
     ~Model();
-    //std::vector<float> getBeginDates(){return beginDates;};
+    std::vector<float> getBeginDates(){return beginDates;};
+    std::vector<float> getEndDates(){return endDates;};
+    std::vector<float> getDonationDates(){return donationDates;};
+    
+    typedef std::map<string, objData> objMap;
+    
+    //std::map<string, objData> getArtworks(){return artWorks;};
+    objMap getArtworks(){return artWorks;};
+    
+    initialView getInitial(){return mInitialView};
+    
     //float getYear(std::string nameOfArtwork){return year;}
     
-//private:
+private:
+    std::vector<string> linkNum;
+    
     std::vector<float> beginDates;
     std::vector<float> endDates;
     std::vector<float> donationDates;
     
-    //Controller mController;
+    initialView convertYears();
+    initialView mInitialView;
+        
+    //std::map<string,objData> parsejson( DataSourceRef);
+    //std::map<string,objData> artWorks;
+    objMap parsejson( DataSourceRef);
+    objMap artWorks;
+    
+    //objData artWorks;
+    
+        //objData parsejson( DataSourceRef file) artWorks;
     
     void setup();
 };

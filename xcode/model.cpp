@@ -14,14 +14,41 @@
 using namespace ci;
 using namespace ci::app;
 using namespace std;
+
 Controller mController;
-    int mindate = 1400;
-    int maxdate = 2017;
+
+const DataSourceRef data;
+//string myString = loadString( loadFile( "mathtsv.tsv" ) );
+
+static int mindate = 1400;
+static int maxdate = 2017;
+static string baseurl = "http://www.metmuseum.org/art/collection/search/";
+
+Model::objMap artWorks;
+//std::map<string, objData> artWorks;
+
+struct initialView {
+    vector<float> beginDates;
+    vector<float> endDates;
+    vector<float> donationDates;
+    vector<string> linkNum;
+};
+
+struct objData {
+    string Title;
+    string Artist;
+    string Nation;
+    float beginDate;
+    float endDate;
+    float dims[2];
+    float donationDate;
+    //append this one to baseurl to retrieve images
+    string linkNum;
+};
+
 
 Model::Model(){
     
-    const DataSourceRef data;
-    //string myString = loadString( loadFile( "mathtsv.tsv" ) );
 }
 
 Model::~Model(){
@@ -31,32 +58,45 @@ Model::~Model(){
 void Model::setup()
 {
     //parsejson("https://raw.githubusercontent.com/Ianssmith/cinderMET/master/resources/met/mathjson.json");
-    parsejson(DataSourceRef( ci::app::loadAsset("mathjson.json")));
+    artWorks = parsejson(DataSourceRef( ci::app::loadAsset("mathjson.json")));
     convertYears();
-    mController.drawPrimitives(beginDates, endDates, donationDates);
+    //mController.drawPrimitives(beginDates, endDates, donationDates);
     //cout<<beginDates[0]<<endl;
 }
 
 
 
-void Model::parsejson(DataSourceRef file){
+Model::objMap Model::parsejson(DataSourceRef file){
+//std::map<string, objData> Model::parsejson(DataSourceRef file){
     //void Model::parsejson(const string &url){
     try{
         const JsonTree json( file );
         ////const JsonTree json( loadUrl(url) );
         //cout << json << endl;
-        //for(int i=0;i<=50*4;i++){
             for( auto &feature : json["objects"].getChildren() ){
                 //auto &Dates = feature["Object Begin Date"];
+                //artwork detail data
+                objData artStruct;
+                artStruct.Title = feature["Title"].getValue<string>();
+                artStruct.Artist = feature["Artist Display Name"].getValue<string>();
+                artStruct.Nation = feature["Artist Nationality"].getValue<string>();
+                artStruct.beginDate = feature["Object Begin Date"].getValue<float>();
+                artStruct.endDate = feature["Object End Date"].getValue<float>();
+                artStruct.donationDate = feature["Donation_Date"].getValue<float>();
+                artStruct.dims[2] = feature["cm_Dimensions"].getValue<float>();
+                artStruct.linkNum = feature["url_num"].getValue<string>();
+                artWorks[feature["Title"].getValue<string>()] = artStruct;
+                
+                //initial view 
+                linkNum.push_back(feature["url_num"][0].getValue<string>());
                 beginDates.push_back(feature["Object Begin Date"].getValue<float>());
                 endDates.push_back(feature["Object End Date"].getValue<float>());
                 donationDates.push_back(feature["Donation_Date"][0].getValue<float>());
                 //cout<<beginDates[0]<<endl;
             //cout << feature["Object Begin Date"].getValue<int>() << endl;
             }
-        //}
+        return artWorks;
     }
-   
 //auto &coords = feature["geometry"]["coordinates"];
 //float mag = feature["properties"]["mag"].getValue<float>();
 //const string &title = feature["properties"]["title"].getValue();
@@ -67,11 +107,11 @@ void Model::parsejson(DataSourceRef file){
     }
 }
 
-    void Model::convertYears(){
-    for(int i=0;i<beginDates.size();i++){
-        beginDates[i] = ((beginDates[i]-mindate)*getWindowWidth())/(maxdate-mindate);
-       endDates[i] =  ((endDates[i]-mindate)*getWindowWidth())/(maxdate-mindate);
-       donationDates[i] = ((donationDates[i]-mindate)*getWindowWidth())/(maxdate-mindate);
+    initialView Model::convertYears(){
+    for(int i=0;i<sizeof(beginDates);i++){
+        beginDates[i] = ((beginDates[i]-mindate)*getWindowWidth()-20)/(maxdate-mindate);
+       endDates[i] =  ((endDates[i]-mindate)*getWindowWidth()-20)/(maxdate-mindate);
+       donationDates[i] = ((donationDates[i]-mindate)*getWindowWidth()-20)/(maxdate-mindate);
         //cout<<beginDates[i]<<endl;
         
         
