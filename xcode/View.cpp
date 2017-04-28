@@ -29,10 +29,18 @@ void View::drawView(vector<float> begin, vector<float> end, vector<float> donate
     gl::color( ci::Color(0.5,1,1) );
     for(int i=0;i<begin.size();i++){
         cout<<begin[i]<<endl;
-        ci::vec2 mCircleCenter = ci::vec2(begin[i],i*2);
-        float mCircleRadius = 5;
-        gl::drawSolidCircle( mCircleCenter, mCircleRadius );
-        gl::drawSolidCircle( vec2(200,200), 3 );
+        ci::vec2 mBeginCenter = ci::vec2(begin[i],i*10);
+        ci::vec2 mEndCenter = ci::vec2(end[i],i*10);
+        ci::vec2 mDonatedCenter = ci::vec2(donated[i],i*10);
+        float mCircleRadius = 3;
+        gl::drawLine(mBeginCenter, mEndCenter);
+    gl::color( ci::Color(0.5,1,1) );
+        gl::drawSolidCircle( mBeginCenter, mCircleRadius );
+    gl::color( ci::Color(1,0.5,1) );
+        gl::drawSolidCircle( mEndCenter, mCircleRadius );
+    gl::color( ci::Color(1,1,0.5) );
+        gl::drawSolidCircle( mDonatedCenter, mCircleRadius );
+        //gl::drawSolidCircle( vec2(200,200), 3 );
     }
 }
 

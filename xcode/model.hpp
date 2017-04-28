@@ -18,6 +18,10 @@ public:
     void convertYears();
     Model();
     ~Model();
+    //std::vector<float> getBeginDates(){return beginDates;};
+    //float getYear(std::string nameOfArtwork){return year;}
+    
+//private:
     std::vector<float> beginDates;
     std::vector<float> endDates;
     std::vector<float> donationDates;

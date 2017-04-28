@@ -8,6 +8,8 @@
 //
 
 #include "Controller.hpp"
+#include "View.hpp"
+#include "Model.hpp"
 
 using namespace ci;
 using namespace ci::app;
@@ -17,6 +19,8 @@ using namespace std;
 
 Controller::Controller()
 {
+    
+    
     
 }
 

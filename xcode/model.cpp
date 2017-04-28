@@ -69,12 +69,14 @@ void Model::parsejson(DataSourceRef file){
 
     void Model::convertYears(){
     for(int i=0;i<beginDates.size();i++){
-        beginDates[i] = (beginDates[i]*getWindowWidth())/maxdate;
-       endDates[i] =  (endDates[i]*getWindowWidth())/maxdate;
-       donationDates[i] = (donationDates[i]*getWindowWidth())/maxdate;
+        beginDates[i] = ((beginDates[i]-mindate)*getWindowWidth())/(maxdate-mindate);
+       endDates[i] =  ((endDates[i]-mindate)*getWindowWidth())/(maxdate-mindate);
+       donationDates[i] = ((donationDates[i]-mindate)*getWindowWidth())/(maxdate-mindate);
         //cout<<beginDates[i]<<endl;
         
         
     }
 }
+
+//getter
 

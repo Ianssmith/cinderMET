@@ -16,6 +16,9 @@ public:
     void mouseDown( MouseEvent event ) override;
     void update() override;
     void draw() override;
+
+    
+    //VisualizationViewRef mVisualizer;
     //void drawPrimitives(vector<float>, vector<float>, vector<float>);
     Controller controller;
     Model model;
@@ -39,11 +42,21 @@ void METProjectApp::setup()
     //mCircleCenter = vec2( 500, 200 );
     //mCircleRadius = 100.0f;
     
+    //std::vector<float> newData = model.getBeginDates();
+    
+    
+    
+    
 }
 
 void METProjectApp::mouseDown( MouseEvent event )
 {
     //controller.updateView(2);
+    model.setup();
+    
+    //mVisualizer->updateData(std::string name, float year, std::string auther));
+    //var = model.getter()
+    
 }
 
 void METProjectApp::update()
@@ -52,7 +65,6 @@ void METProjectApp::update()
 
 void METProjectApp::draw()
 {
-    model.setup();
     //gl::clear( Color( 0, 0, 0 ) );
     //gl::color( mFillColor );
     //gl::drawSolidCircle(vec2(400,2),5);
