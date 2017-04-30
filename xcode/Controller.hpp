@@ -28,7 +28,7 @@ public:
     View view;
     Model mModel;
     
-    initialView Iview = mModel::getInitial();
+    Model::initialView Iview = Model::getInitial();
     //objData popData = mModel.getArtworkData(key);
     //void convertYears(std::vector<float>, std::vector<float>, std::vector<float>);
     //void drawPrimitives(std::vector<float>, std::vector<float>, std::vector<float>);

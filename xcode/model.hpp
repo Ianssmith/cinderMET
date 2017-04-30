@@ -17,25 +17,42 @@ public:
     
     Model();
     ~Model();
+    void setup();
     std::vector<float> getBeginDates(){return beginDates;};
     std::vector<float> getEndDates(){return endDates;};
     std::vector<float> getDonationDates(){return donationDates;};
+    std::vector<string> getlinkNum(){return linkNum;};
+
+    //define data struct for initial view
+    struct initialView {
+        vector<float> beginDates;
+        vector<float> endDates;
+        vector<float> donationDates;
+        vector<string> titles;
+        //vector<string> linkNum;
+    };
     
+    //define data struct for detailed view
+    struct objData {
+        string Title;
+        string Artist;
+        string Nation;
+        float beginDate;
+        float endDate;
+        float dims[2];
+        float donationDate;
+        //append this one to baseurl to retrieve images
+        string linkNum;
+    };
+    
+    //alias detailed view struct
     typedef std::map<string, objData> objMap;
     
-    objMap getArtworks(){return artWorks;};
+    //getters
+    initialView getInitial();
+    objMap getArtworks();
+    
     //std::map<string, objData> getArtworks(){return artWorks;};
-    
-    
-struct initialView {
-    vector<float> beginDates;
-    vector<float> endDates;
-    vector<float> donationDates;
-    vector<string> linkNum;
-};
-    
-    initialView getInitial(){return mInitialView;};
-    
     //float getYear(std::string nameOfArtwork){return year;}
     
 private:
@@ -44,17 +61,16 @@ private:
     std::vector<float> beginDates;
     std::vector<float> endDates;
     std::vector<float> donationDates;
+    std::vector<string> titles;
+    //std::vector<string> linkNum;
     
-    initialView convertYears();
-    initialView mInitialView;
         
     //std::map<string,objData> parsejson( DataSourceRef);
-    //std::map<string,objData> artWorks;
     objMap parsejson( DataSourceRef);
-    objMap artWorks;
+    initialView convertYears(objMap);
     
     
-    void setup();
+    
 };
 
 #endif /* Model_hpp */
