@@ -26,6 +26,8 @@ public:
     
     bool performPicking( vec3 *pickedPoint, vec3 *pickedNormal );
     void drawCube( const AxisAlignedBox &bounds, const Color &color );
+    void drawVertices( const AxisAlignedBox &bounds, int arraySize, float begin, float end, float donated, float artistborn);
+    float map(float x, float in_min, float in_max, float out_min, float out_max);
     
 private:
     TriMeshRef			mTriMesh;		//! The 3D mesh.
@@ -94,7 +96,7 @@ void met3DPicking_01App::draw()
         //gl::ScopedModelMatrix model;
         //gl::multModelMatrix( mTransform );
         
-        mMesh->draw();
+        //mMesh->draw();
     
     
     // Perform 3D picking now, so we can draw the result as a vector.
@@ -134,6 +136,7 @@ bool met3DPicking_01App::performPicking( vec3 *pickedPoint, vec3 *pickedNormal )
     // Draw the object space bounding box in yellow. It will not animate,
     // because animation is done in world space.
     drawCube( mObjectBounds, Color( 1, 1, 0 ) );
+    drawVertices(mObjectBounds, 10, 1730, 1751, 2017, 1696);
     
     // Draw the exact bounding box in orange.
     //drawCube( worldBoundsExact, Color( 1, 0.5f, 0 ) );
@@ -195,7 +198,40 @@ void met3DPicking_01App::drawCube( const AxisAlignedBox &bounds, const Color & c
     mWireCube->draw();
     
     //For Ian: By using the mesh box we can integrate the 3D picking when "touching" one of the objects, in case we want a slide down with information and picture etc. I am trying to integrate a way to put the vertices from our data in relation on the box. Also, there is something wrong with the way the mesh "closes" as you can see.
-    console() << bounds.getSize() << endl;
+    ci::gl::color(Color( 1, 0, 1 ));
+    gl::drawCube(bounds.getCenter(), bounds.getSize()/vec3(4));
+    }
+//These parameters will be replaced with the struct objects.
+void met3DPicking_01App::drawVertices( const AxisAlignedBox &bounds, int arraySize, float begin, float end, float donated, float artistborn)
+{
+    for(int i = 0; i < arraySize; i++){
+        ci::gl::color(Color( 0, 1, 1 ));
+        //begin
+        ci::vec3 pointBegin = ci::vec3(-0.5, map(i, 0, arraySize, -0.5, 0.5) , map(begin, 1400, 2020, -0.5, 0.5));
+        //end
+        ci::vec3 pointEnd = ci::vec3(map(end, 1400, 2020, -0.5, 0.5), map(i, 0, arraySize, -0.5, 0.5) , -0.5);
+        //donated
+        ci::vec3 pointDonated = ci::vec3(0.5, map(i, 0, arraySize, -0.5, 0.5) , map(donated, 1900, 2020, -0.5, 0.5));
+        //artistborn
+        ci::vec3 pointBorn = ci::vec3(map(artistborn, 1400, 2020, -0.5, 0.5), map(i, 0, arraySize, -0.5, 0.5) , 0.5);
+        
+        //Points
+        gl::drawSphere(bounds.getCenter() + pointBegin, 0.01);
+        gl::drawSphere(bounds.getCenter() + pointEnd, 0.01);
+        gl::drawSphere(bounds.getCenter() + pointDonated, 0.01);
+        gl::drawSphere(bounds.getCenter() + pointBorn, 0.01);
+        
+        //Lines
+        gl::drawLine(bounds.getCenter() + pointBegin, bounds.getCenter() + pointEnd);
+        gl::drawLine(bounds.getCenter() + pointEnd, bounds.getCenter() + pointDonated);
+        gl::drawLine(bounds.getCenter() + pointDonated, bounds.getCenter() + pointBorn);
+        gl::drawLine(bounds.getCenter() + pointBorn, bounds.getCenter() + pointBegin);
+    }
+}
+
+float met3DPicking_01App::map(float x, float in_min, float in_max, float out_min, float out_max)
+{
+    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
 CINDER_APP( met3DPicking_01App, RendererGl( RendererGl::Options().msaa( 8 ) ) )
