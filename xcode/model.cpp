@@ -5,11 +5,12 @@
 #include "cinder/DataSource.h"
 #include "cinder/Utilities.h"
 #include "cinder/params/Params.h"
-#include "Controller.hpp"
-#include "Model.hpp"
 #include <iostream>
 #include <vector>
 
+#include "Controller.hpp"
+#include "Model.hpp"
+#include "View.hpp"
 
 using namespace ci;
 using namespace ci::app;
@@ -23,6 +24,13 @@ const DataSourceRef data;
 static int mindate = 1400;
 static int maxdate = 2017;
 static string baseurl = "http://www.metmuseum.org/art/collection/search/";
+
+    std::vector<float> beginDates;
+    std::vector<float> endDates;
+    std::vector<float> donationDates;
+    std::vector<std::string> titles;
+
+typedef std::map<std::string, Model::objData> objMap;
 
 Model::objMap artWorks;
 //std::map<string, objData> artWorks;
@@ -45,7 +53,7 @@ void Model::setup()
     //parse data and put into map containing structs with Title as map key
     artWorks = parsejson(DataSourceRef( ci::app::loadAsset("mathjson.json")));
     //convert dates into scale for plotting and return to view struct
-    mInitialView = convertYears(artWorks);
+    mInitialView = convertYears(beginDates, endDates, donationDates, titles);
     //mController.drawPrimitives(beginDates, endDates, donationDates);
     //cout<<beginDates[0]<<endl;
 }
@@ -56,18 +64,19 @@ Model::objMap Model::parsejson(DataSourceRef file){
 //std::map<string, objData> Model::parsejson(DataSourceRef file){
     try{
         const JsonTree json( file );
+            objMap OM;
             for( auto &feature : json["objects"].getChildren() ){
                 //artwork detail data
-                objData artStruct;
+                Model::objData artStruct;
                 artStruct.Title = feature["Title"].getValue<string>();
                 artStruct.Artist = feature["Artist Display Name"].getValue<string>();
                 artStruct.Nation = feature["Artist Nationality"].getValue<string>();
                 artStruct.beginDate = feature["Object Begin Date"].getValue<float>();
                 artStruct.endDate = feature["Object End Date"].getValue<float>();
-                artStruct.donationDate = feature["Donation_Date"].getValue<float>();
-                artStruct.dims[2] = feature["cm_Dimensions"].getValue<float>();
+                artStruct.donationDate = feature["Donation_Date"][0].getValue<float>();
+                //artStruct.dims[0] = feature["cm_Dimensions"][0].getValue<float>();
                 artStruct.linkNum = feature["url_num"].getValue<string>();
-                artWorks[feature["Title"].getValue<string>()] = artStruct;
+                OM[feature["Title"].getValue<string>()] = artStruct;
                 
                 //initial view 
                 titles.push_back(feature["Title"].getValue<string>());
@@ -77,7 +86,7 @@ Model::objMap Model::parsejson(DataSourceRef file){
                 donationDates.push_back(feature["Donation_Date"][0].getValue<float>());
                 //cout<<beginDates[0]<<endl;
             }
-        return artWorks;
+        return OM;
     }
     
     catch( ci::Exception &exc ) {
@@ -85,29 +94,30 @@ Model::objMap Model::parsejson(DataSourceRef file){
     }
 }
 
-Model::initialView Model::convertYears(objMap artmap){
-    initialView initView;
-    for(int i=0;i<sizeof(beginDates);i++){
+//Model::initialView Model::convertYears(objMap artmap){
+Model::initialView Model::convertYears(std::vector<float> bdates,std::vector<float> edates,std::vector<float> ddates,std::vector<std::string> title){
+    Model::initialView initView;
+    for(int i=0;i<bdates.size();i++){
     //vector<float> beginDates;
     //vector<float> endDates;
     //vector<float> donationDates;
     //vector<string> linkNum;
-        initView.beginDates[i] = ((beginDates[i]-mindate)*getWindowWidth()-20)/(maxdate-mindate);
-        initView.endDates[i] =  ((endDates[i]-mindate)*getWindowWidth()-20)/(maxdate-mindate);
-        initView.donationDates[i] = ((donationDates[i]-mindate)*getWindowWidth()-20)/(maxdate-mindate);
+        initView.beginDates[i] = ((bdates[i]-mindate)*getWindowWidth()-20)/(maxdate-mindate);
+        initView.endDates[i] =  ((edates[i]-mindate)*getWindowWidth()-20)/(maxdate-mindate);
+        initView.donationDates[i] = ((ddates[i]-mindate)*getWindowWidth()-20)/(maxdate-mindate);
         //initView.beginDates[i] = ((artmap[i].beginDate-mindate)*getWindowWidth()-20)/(maxdate-mindate);
         //initView.endDates[i] =  ((artmap[i].endDate-mindate)*getWindowWidth()-20)/(maxdate-mindate);
         //initView.donationDates[i] = ((artmap[i].donationDate-mindate)*getWindowWidth()-20)/(maxdate-mindate);
-        initView.titles[i] = titles[i];
+        initView.titles[i] = title[i];
         
         //cout<<beginDates[i]<<endl;
     }
     return initView;
 }
 
-Model::initialView getInitial(){return mInitialView;};
+Model::initialView Model::getInitialData(){return mInitialView;};
 
-Model::objMap getArtworks(){return artWorks;};
+Model::objMap Model::getObjectData(){return artWorks;};
 
 
 

@@ -10,6 +10,10 @@
 #define Model_hpp
 
 #include <stdio.h>
+//#include "Controller.hpp"
+//#include "View.hpp"
+
+
 
 class Model
 {
@@ -18,56 +22,56 @@ public:
     Model();
     ~Model();
     void setup();
-    std::vector<float> getBeginDates(){return beginDates;};
-    std::vector<float> getEndDates(){return endDates;};
-    std::vector<float> getDonationDates(){return donationDates;};
-    std::vector<string> getlinkNum(){return linkNum;};
+    //std::vector<float> getBeginDates(){return beginDates;};
+    //std::vector<float> getEndDates(){return endDates;};
+    //std::vector<float> getDonationDates(){return donationDates;};
+    //std::vector<std::string> getlinkNum(){return linkNum;};
 
     //define data struct for initial view
     struct initialView {
-        vector<float> beginDates;
-        vector<float> endDates;
-        vector<float> donationDates;
-        vector<string> titles;
+        std::vector<float> beginDates;
+        std::vector<float> endDates;
+        std::vector<float> donationDates;
+        std::vector<std::string> titles;
         //vector<string> linkNum;
     };
     
     //define data struct for detailed view
     struct objData {
-        string Title;
-        string Artist;
-        string Nation;
+        std::string Title;
+        std::string Artist;
+        std::string Nation;
         float beginDate;
         float endDate;
-        float dims[2];
+        //float dims[2];
         float donationDate;
         //append this one to baseurl to retrieve images
-        string linkNum;
+        std::string linkNum;
     };
     
     //alias detailed view struct
-    typedef std::map<string, objData> objMap;
+    typedef std::map<std::string, objData> objMap;
     
     //getters
-    initialView getInitial();
-    objMap getArtworks();
+    initialView getInitialData();
+    objMap getObjectData();
     
     //std::map<string, objData> getArtworks(){return artWorks;};
     //float getYear(std::string nameOfArtwork){return year;}
     
 private:
-    std::vector<string> linkNum;
+    std::vector<std::string> linkNum;
     
-    std::vector<float> beginDates;
-    std::vector<float> endDates;
-    std::vector<float> donationDates;
-    std::vector<string> titles;
+    //std::vector<float> beginDates;
+    //std::vector<float> endDates;
+    //std::vector<float> donationDates;
+    //std::vector<std::string> titles;
     //std::vector<string> linkNum;
     
         
     //std::map<string,objData> parsejson( DataSourceRef);
-    objMap parsejson( DataSourceRef);
-    initialView convertYears(objMap);
+    objMap parsejson( ci::DataSourceRef);
+    initialView convertYears(std::vector<float>,std::vector<float>,std::vector<float>,std::vector<std::string>);
     
     
     

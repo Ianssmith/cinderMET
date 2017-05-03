@@ -30,6 +30,8 @@ public:
     float mCircleRadius;
     Color mFillColor;
     Model::objMap artWorks;
+    Model::initialView IV = mView.getInitV();
+    Model::objMap pd = mView.getArtwork();
 };
 
 
@@ -68,7 +70,7 @@ void METProjectApp::update()
 
 void METProjectApp::draw()
 {
-    mView.drawView(initialview);
+    mView.drawView(IV);
     //gl::clear( Color( 0, 0, 0 ) );
     //gl::color( mFillColor );
     //gl::drawSolidCircle(vec2(400,2),5);

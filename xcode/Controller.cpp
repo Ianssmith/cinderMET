@@ -15,7 +15,11 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
+View mView;
+Model mModel;
 
+Model::initialView controlinitView;
+Model::objMap controlpop;
 
 Controller::Controller()
 {
@@ -31,12 +35,20 @@ Controller::~Controller()
 
 void Controller::updateView(int number)
 {
-    view.update(number);
+    mView.update(number);
+}
+
+Model::initialView Controller::IviewData(){
+    return mModel.getInitialData();
+}
+Model::objMap Controller::popData(){
+    return mModel.getObjectData();
 }
 
 
 
 
-void Controller::drawPrimitives(vector<float> begin, vector<float> end, vector<float> donated){
-    view.drawView(begin, end, donated);
-}
+
+//void Controller::drawPrimitives(vector<float> begin, vector<float> end, vector<float> donated){
+    //view.drawView(begin, end, donated);
+//}

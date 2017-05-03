@@ -10,10 +10,13 @@
 #pragma once
 
 #include <stdio.h>
+//#include "Controller.hpp"
+#include "Model.hpp"
 
 using namespace ci;
 using namespace ci::app;
 using namespace std;
+
 
 class View
 {
@@ -23,12 +26,15 @@ public:
     //Deconstructor
     ~View();
     
-    void drawPrimitives(vector<float>, vector<float>, vector<float>);
-    void drawView(initialView);
-    void showPopup(struct objData);
+    
+    //void drawPrimitives(vector<float>, vector<float>, vector<float>);
+    void drawView(Model::initialView);
+    void showPopup(Model::objData);
     
     void update(int info);
     
+    Model::initialView getInitV();
+    Model::objMap getArtwork();
     
     
 private:
