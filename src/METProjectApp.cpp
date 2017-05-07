@@ -2,91 +2,51 @@
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 
-#include "Controller.hpp"
-#include "Model.hpp"
+#include "METProject.hpp"
+#include "DataManager.hpp"
 #include "View.hpp"
+#include "common.h"
+
+#include "poScene.h"
 
 using namespace ci;
 using namespace ci::app;
 using namespace std;
+using namespace po::scene;
+
 
 class METProjectApp : public App {
 public:
     void setup() override;
-    void mouseDown( MouseEvent event ) override;
     void update() override;
     void draw() override;
 
+    SceneRef scene;
     
-    //VisualizationViewRef mVisualizer;
-    //void drawPrimitives(vector<float>, vector<float>, vector<float>);
-    Controller mController;
-    Model mModel;
-    View mView;
-    int width = 1024;
-    int height = 768;
-    
-    vec2 mCircleCenter;
-    float mCircleRadius;
-    Color mFillColor;
-    Model::objMap artWorks;
-    Model::initialView IV = mView.getInitV();
-    Model::objMap pd = mView.getArtwork();
 };
 
 
 void METProjectApp::setup()
 {
-    //model.parsejson();
-    //controller.updateView(1);
-    
-    setWindowSize( width, height );
-    mFillColor = Color( 1.0f, 1.0f, 1.0f );
-    //model.setup();
-    //mCircleCenter = vec2( 500, 200 );
-    //mCircleRadius = 100.0f;
-    
-    //std::vector<float> newData = model.getBeginDates();
-    
-    
-    
-    
+    scene = Scene::create(METProject::create());
 }
 
-void METProjectApp::mouseDown( MouseEvent event )
-{
-    //controller.updateView(2);
-    mModel.setup();
-    //mView.showPopup(artWork);
-    
-    //mVisualizer->updateData(std::string name, float year, std::string auther));
-    //var = model.getter()
-    
-}
 
 void METProjectApp::update()
 {
+    scene->update();
 }
 
 void METProjectApp::draw()
 {
-    mView.drawView(IV);
-    //gl::clear( Color( 0, 0, 0 ) );
+    gl::clear( Color( 55, 57, 54) );
     //gl::color( mFillColor );
-    //gl::drawSolidCircle(vec2(400,2),5);
-    //drawPrimitives(<#vector<float>#>, <#vector<float>#>, <#vector<float>#>)
-    
+    scene->draw();
 }
 
-/*
-void drawPrimitives(vector<float> begin, vector<float> end, vector<float> donated){
-    for(int i=0;i<begin.size();i++){
-        vec2 mCircleCenter = vec2(begin[i],i*2);
-        float mCircleRadius = 5;
-        gl::drawSolidCircle( mCircleCenter, mCircleRadius );
-        
-    }
-}
- */
 
 CINDER_APP( METProjectApp, RendererGl )
+
+
+
+

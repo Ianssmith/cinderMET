@@ -23,9 +23,10 @@
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		55E9DB4E49D14A338625176B /* METProjectApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93C89627EB9A4D47BB6FD488 /* METProjectApp.cpp */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		91D87A211EAFD852008C7814 /* Controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91D87A1F1EAFD852008C7814 /* Controller.cpp */; };
+		91460B641EBD717400D40C9B /* Buttons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91460B621EBD717400D40C9B /* Buttons.cpp */; };
+		91D87A211EAFD852008C7814 /* METProject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91D87A1F1EAFD852008C7814 /* METProject.cpp */; };
 		91D87A241EAFD886008C7814 /* View.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91D87A221EAFD886008C7814 /* View.cpp */; };
-		91D87A271EAFD8D6008C7814 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91D87A251EAFD8D6008C7814 /* Model.cpp */; };
+		91D87A271EAFD8D6008C7814 /* DataManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91D87A251EAFD8D6008C7814 /* DataManager.cpp */; };
 		AC61E17E4C3E4027A608963C /* poImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D766B19ADA784809B71AA5BF /* poImage.cpp */; };
 		CE590B532404452CBCA15973 /* poEventCenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF1A067FF9A5422D973899FF /* poEventCenter.cpp */; };
 		DD41F60D9EB249B482C7F97F /* poNodeContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BEB28FBC84114F43B7DD8845 /* poNodeContainer.cpp */; };
@@ -61,12 +62,15 @@
 		7B369CED105D408CAE23261C /* poShape.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = poShape.h; path = ../blocks/poScene/src/poScene/poShape.h; sourceTree = "<group>"; };
 		82E3084093164D3988902C20 /* poNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = poNode.h; path = ../blocks/poScene/src/poScene/poNode.h; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* METProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = METProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		91D87A1F1EAFD852008C7814 /* Controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Controller.cpp; sourceTree = "<group>"; };
-		91D87A201EAFD852008C7814 /* Controller.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Controller.hpp; sourceTree = "<group>"; };
+		91460B611EBB73C300D40C9B /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = common.h; path = ../src/common.h; sourceTree = "<group>"; };
+		91460B621EBD717400D40C9B /* Buttons.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Buttons.cpp; sourceTree = "<group>"; };
+		91460B631EBD717400D40C9B /* Buttons.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Buttons.hpp; sourceTree = "<group>"; };
+		91D87A1F1EAFD852008C7814 /* METProject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = METProject.cpp; sourceTree = "<group>"; };
+		91D87A201EAFD852008C7814 /* METProject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = METProject.hpp; sourceTree = "<group>"; };
 		91D87A221EAFD886008C7814 /* View.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = View.cpp; sourceTree = "<group>"; };
 		91D87A231EAFD886008C7814 /* View.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = View.hpp; sourceTree = "<group>"; };
-		91D87A251EAFD8D6008C7814 /* Model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Model.cpp; sourceTree = "<group>"; };
-		91D87A261EAFD8D6008C7814 /* Model.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Model.hpp; sourceTree = "<group>"; };
+		91D87A251EAFD8D6008C7814 /* DataManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataManager.cpp; sourceTree = "<group>"; };
+		91D87A261EAFD8D6008C7814 /* DataManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DataManager.hpp; sourceTree = "<group>"; };
 		93C89627EB9A4D47BB6FD488 /* METProjectApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = METProjectApp.cpp; path = ../src/METProjectApp.cpp; sourceTree = "<group>"; };
 		9E915AC64BAA4DE4A05DCE2F /* poNodeContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = poNodeContainer.h; path = ../blocks/poScene/src/poScene/poNodeContainer.h; sourceTree = "<group>"; };
 		A7388F8BE2E0451B92BD0CD1 /* poEvents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = poEvents.h; path = ../blocks/poScene/src/poScene/poEvents.h; sourceTree = "<group>"; };
@@ -116,12 +120,15 @@
 			isa = PBXGroup;
 			children = (
 				93C89627EB9A4D47BB6FD488 /* METProjectApp.cpp */,
-				91D87A251EAFD8D6008C7814 /* Model.cpp */,
-				91D87A261EAFD8D6008C7814 /* Model.hpp */,
+				91D87A251EAFD8D6008C7814 /* DataManager.cpp */,
+				91D87A261EAFD8D6008C7814 /* DataManager.hpp */,
 				91D87A221EAFD886008C7814 /* View.cpp */,
 				91D87A231EAFD886008C7814 /* View.hpp */,
-				91D87A1F1EAFD852008C7814 /* Controller.cpp */,
-				91D87A201EAFD852008C7814 /* Controller.hpp */,
+				91460B621EBD717400D40C9B /* Buttons.cpp */,
+				91460B631EBD717400D40C9B /* Buttons.hpp */,
+				91D87A1F1EAFD852008C7814 /* METProject.cpp */,
+				91D87A201EAFD852008C7814 /* METProject.hpp */,
+				91460B611EBB73C300D40C9B /* common.h */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -308,8 +315,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				91D87A241EAFD886008C7814 /* View.cpp in Sources */,
-				91D87A271EAFD8D6008C7814 /* Model.cpp in Sources */,
+				91D87A271EAFD8D6008C7814 /* DataManager.cpp in Sources */,
 				55E9DB4E49D14A338625176B /* METProjectApp.cpp in Sources */,
+				91460B641EBD717400D40C9B /* Buttons.cpp in Sources */,
 				CE590B532404452CBCA15973 /* poEventCenter.cpp in Sources */,
 				277D01165133422F95A12518 /* poEvents.cpp in Sources */,
 				AC61E17E4C3E4027A608963C /* poImage.cpp in Sources */,
@@ -319,7 +327,7 @@
 				EA296A6321B2483EA53011A1 /* poScene.cpp in Sources */,
 				F18E84C7B9AE420EA2115628 /* poShape.cpp in Sources */,
 				207F80C699B247458301F40E /* poTextBox.cpp in Sources */,
-				91D87A211EAFD852008C7814 /* Controller.cpp in Sources */,
+				91D87A211EAFD852008C7814 /* METProject.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
