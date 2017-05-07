@@ -31,6 +31,8 @@ public:
     
     void setup();
     //virtual void setup();
+    static met::backgroundData getInitialData();
+    //met::artWorkData getArtworkData(std::string key, met::objMap map){return map[key];}
 
 protected:
     DataManager();
@@ -55,9 +57,7 @@ private:
     //std::map<string,objData> parsejson( DataSourceRef);
     met::objMap parsejson( ci::DataSourceRef);
     met::backgroundData convertYears(std::vector<float>,std::vector<float>,std::vector<float>,std::vector<std::string>);
-    met::backgroundData getInitialData();
     
-    met::artWorkData getArtworkData(std::string key, met::objMap map){return map[key];}
     
 };
 

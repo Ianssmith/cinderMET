@@ -46,8 +46,8 @@ void METProject::setup()
     
     mInitView = DataManager::getInitialData();
     
-    createUI();
-    //createView();
+    //createUI();
+    createView(mInitView);
     
     //Mouse events
     //getSignal(po::scene::MouseEvent::DOWN).connect(std::bind(&METProject::onViewMouseEvent, this, std::placeholders::_1));
