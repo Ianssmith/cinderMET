@@ -103,7 +103,7 @@ met::backgroundData DataManager::convertYears(std::vector<float> bdates,std::vec
     return initView;
 }
 
-//met::backgroundData DataManager::getInitialData(){return mInitialView;};
+met::backgroundData DataManager::getInitialData(){return mInitialView;};
 
 //met::objMap DataManager::getObjectData(){return artWorks;};
 

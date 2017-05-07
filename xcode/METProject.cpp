@@ -40,8 +40,11 @@ void METProject::setup()
     int width = 1024;
     int height = 768;
     
-    mDataManager = DataManager::create();
+    //mDataManager = DataManager::create();
     
+    createDataManager();
+    
+    mInitView = DataManager::getInitialData();
     
     createUI();
     //createView();
@@ -57,57 +60,56 @@ void METProject::createDataManager()
 {
     mDataManagerContainer = NodeContainer::create();
     addChild(mDataManagerContainer);
-    mInitView = 
     
 }
     
-    void METProject::createUI()
-    {
-        mButtonLabels = {
-            "Boxes/Points",
-            "Birth of Project",
-            "Completion Year of Project",
-            "Year Donated to MET",
-            "Artist Country",
-            "Artist Birth",
-            "Artist Death"
-        };
-        mUIContainer = NodeContainer::create();
-        addChild(mUIContainer);
-        mUIContainer->setPosition(30,30);
+void METProject::createUI()
+{
+    mButtonLabels = {
+        "Boxes/Points",
+        "Birth of Project",
+        "Completion Year of Project",
+        "Year Donated to MET",
+        "Artist Country",
+        "Artist Birth",
+        "Artist Death"
+    };
+    mUIContainer = NodeContainer::create();
+    addChild(mUIContainer);
+    mUIContainer->setPosition(30,30);
+    
+    for (int i=0;i < mButtonLabels.size(); i++){
+        uiButtonRef button = uiButton::create(mButtonLabels[i]);
+        mUIContainer->addChild(button);
+        button->setAlpha(1);
         
-        for (int i=0;i < mButtonLabels.size(); i++){
-            uiButtonRef button = uiButton::create(mButtonLabels[i]);
-            mUIContainer->addChild(button);
-            button->setAlpha(1);
-            
-            if(i<5){
-                button->setPosition(i*(button->getHeight() + 5),0);
-            } else {
-                button->setPosition(getWindowWidth()-button->getWidth()+2,(i-5)*(button->getHeight() +5));
-            }
-            muiButtons[mButtonLabels[i]] = button;
-            button->getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&METProject::onUIMouseEvent, this, std::placeholders::_1, button));
+        if(i<5){
+            button->setPosition(i*(button->getHeight() + 5),0);
+        } else {
+            button->setPosition(getWindowWidth()-button->getWidth()+2,(i-5)*(button->getHeight() +5));
         }
+        muiButtons[mButtonLabels[i]] = button;
+        button->getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&METProject::onUIMouseEvent, this, std::placeholders::_1, button));
     }
+}
     
 void METProject::createView(met::backgroundData data)
-    {
-        mViewContainer = NodeContainer::create();
-        addChild(mViewContainer);
-        
-        for(int i=0;i<data.beginDates.size();i++){
-            //cout<<data.beginDates[i]<<endl;
-            //set circle values on data
-            ci::vec2 mBeginCenter = ci::vec2(data.beginDates[i],(i*20)+100);
-            ci::vec2 mEndCenter = ci::vec2(data.endDates[i],(i*20)+100);
-            ci::vec2 mDonatedCenter = ci::vec2(data.donationDates[i],(i*20)+100);
-            //draw points
-            mView = View::create();
-            addChild(mView);// i'm adding my data viz view to this nodecontainer
-        }
-        
+{
+    mViewContainer = NodeContainer::create();
+    addChild(mViewContainer);
+    
+    for(int i=0;i<data.beginDates.size();i++){
+        //cout<<data.beginDates[i]<<endl;
+        //set circle values on data
+        ci::vec2 mBeginCenter = ci::vec2(data.beginDates[i],(i*20)+100);
+        ci::vec2 mEndCenter = ci::vec2(data.endDates[i],(i*20)+100);
+        ci::vec2 mDonatedCenter = ci::vec2(data.donationDates[i],(i*20)+100);
+        //draw points
+        mView = View::create();
+        addChild(mView);// i'm adding my data viz view to this nodecontainer
     }
+    
+}
 
 void METProject::onUIMouseEvent(po::scene::MouseEvent &event, uiButtonRef button)
 {
