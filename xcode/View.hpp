@@ -64,6 +64,7 @@ private:
     
     void drawView(met::backgroundData data);
     void refreshData(met::artWorkData data);
+    void mouseHandler();
     void showPopup(met::artWorkData data);
     
     
