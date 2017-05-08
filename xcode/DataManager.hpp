@@ -31,7 +31,9 @@ public:
     
     void setup();
     //virtual void setup();
-    static met::backgroundData getInitialData();
+    met::backgroundData getInitialData();
+    //static met::backgroundData getInitialData();
+    
     //met::artWorkData getArtworkData(std::string key, met::objMap map){return map[key];}
 
 protected:
@@ -44,19 +46,20 @@ private:
     int mindate;
     int maxdate;
     
-    std::vector<float> beginDates;
-    std::vector<float> endDates;
-    std::vector<float> donationDates;
+    std::vector<int> beginDates;
+    std::vector<int> endDates;
+    std::vector<int> donationDates;
     std::vector<std::string> titles;
     
     std::vector<std::string> linkNum;
     
     met::objMap artWorks;
     met::backgroundData mInitialView;
+    //static met::backgroundData mInitialView;
     
     //std::map<string,objData> parsejson( DataSourceRef);
     met::objMap parsejson( ci::DataSourceRef);
-    met::backgroundData convertYears(std::vector<float>,std::vector<float>,std::vector<float>,std::vector<std::string>);
+    met::backgroundData convertYears(std::vector<int>,std::vector<int>,std::vector<int>,std::vector<std::string>);
     
     
 };

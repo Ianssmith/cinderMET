@@ -16,9 +16,10 @@ uiButtonRef uiButton::create(std::string name)
 }
 
 uiButton::uiButton()
-:mColor(ci::Color(219, 193, 156)),
-mTextColor(ci::Color(74, 70, 52)),
-mHighlightColor(ci::Color(209, 203, 190))
+:mColor(ci::Color(209.f/255, 203.f/255, 190.f/255)),
+//:mColor(ci::Color(244.f/255, 242.f/255, 242.f/255)),
+mTextColor(ci::Color(74.f/255, 70.f/255, 52.f/255)),
+mHighlightColor(ci::Color(209.f/255, 203.f/255, 190.f/255))
 {
 }
 uiButton::~uiButton(){};
@@ -26,7 +27,7 @@ uiButton::~uiButton(){};
 void uiButton::setup(std::string name)
 {
     //make highlight
-    mHighlight = Shape::createRect(100,20);
+    mHighlight = Shape::createRect(100,29);
     mHighlight->setFillColor(mHighlightColor);
     addChild(mHighlight);
     mHighlight->setAlpha(0);
@@ -36,12 +37,13 @@ void uiButton::setup(std::string name)
     textbox.text(name);
     textbox.color(mTextColor);
     textbox.backgroundColor(mColor);
-    textbox.size(100,10);
+    //textbox.color(ci::Color(1,1,1));
+    textbox.size(100,29);
     
     //Add to uiNode
     mTextBox = TextBox::create(textbox);
     addChild(mTextBox);
-    mTextBox->setPosition(5,5);
+    mTextBox->setPosition(0,0);
 }
 
 void uiButton::highlight()

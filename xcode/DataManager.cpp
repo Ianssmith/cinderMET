@@ -44,6 +44,7 @@ void DataManager::setup()
     
     //parse data and put into map containing structs with Title as map key
     artWorks = parsejson(DataSourceRef( ci::app::loadAsset("mathjson.json")));
+    //artWorks = parsejson(DataSourceRef( ci::app::loadAsset("metjson.json")));
     
     //convert dates into scale for plotting and return to view struct
     mInitialView = convertYears(beginDates, endDates, donationDates, titles);
@@ -87,15 +88,15 @@ met::objMap DataManager::parsejson(DataSourceRef file){
     }
 }
 
-met::backgroundData DataManager::convertYears(std::vector<float> bdates,std::vector<float> edates,std::vector<float> ddates,std::vector<std::string> title){
-    mindate = 1350;
-    maxdate = 2017;
+met::backgroundData DataManager::convertYears(std::vector<int> bdates,std::vector<int> edates,std::vector<int> ddates,std::vector<std::string> title){
+    int mindate = 1350;
+    int maxdate = 2017;
     
     met::backgroundData initView;
     for(int i=0;i<bdates.size();i++){
-        initView.beginDates.push_back(((bdates[i]-mindate)*getWindowWidth()-20)/(maxdate-mindate));
-        initView.endDates.push_back(((edates[i]-mindate)*getWindowWidth()-20)/(maxdate-mindate));
-        initView.donationDates.push_back(((ddates[i]-mindate)*getWindowWidth()-20)/(maxdate-mindate));
+        initView.beginDates.push_back(((bdates[i]-mindate)*(ci::app::getWindowWidth()-100))/(maxdate-mindate));
+        initView.endDates.push_back(((edates[i]-mindate)*(ci::app::getWindowWidth()-100))/(maxdate-mindate));
+        initView.donationDates.push_back(((ddates[i]-mindate)*(ci::app::getWindowWidth()-100))/(maxdate-mindate));
         initView.titles.push_back(title[i]);
         
         //cout<<initView.beginDates[i]<<endl;

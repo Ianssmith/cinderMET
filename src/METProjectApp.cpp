@@ -20,6 +20,8 @@ public:
     void setup() override;
     void update() override;
     void draw() override;
+    int width = 1024;
+    int height = 768;
 
     SceneRef scene;
     
@@ -28,6 +30,7 @@ public:
 
 void METProjectApp::setup()
 {
+    setWindowSize(width, height);
     scene = Scene::create(METProject::create());
 }
 
@@ -39,13 +42,13 @@ void METProjectApp::update()
 
 void METProjectApp::draw()
 {
-    gl::clear( Color( 55, 57, 54) );
+    gl::clear( ci::Color(54.f/255, 55.f/255, 52.f/255));
     //gl::color( mFillColor );
     scene->draw();
 }
 
 
-CINDER_APP( METProjectApp, RendererGl )
+CINDER_APP( METProjectApp, RendererGl(RendererGl::Options().msaa( 8 )) )
 
 
 

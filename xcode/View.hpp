@@ -31,12 +31,14 @@ class View
 {
 public:
     
-    static ViewRef create();
+    static ViewRef create(met::backgroundData);
+    //static ViewRef create(ci::vec2, ci::vec2, ci::vec2);
     
     //Deconstructor
     virtual ~View();
     
-    virtual void setup();
+    virtual void setup(met::backgroundData);
+    //virtual void setup(ci::vec2, ci::vec2, ci::vec2);
     
 protected:
     //Constructor
@@ -46,7 +48,9 @@ private:
     //void drawPrimitives(vector<float>, vector<float>, vector<float>);
     
     ShapeRef mArtBegin;
+    ShapeRef mbeginoutline;
     ShapeRef mArtEnd;
+    ShapeRef mArtLine;
     ShapeRef mArtDonated;
     ShapeRef mCountry;
     ShapeRef mBirth;
