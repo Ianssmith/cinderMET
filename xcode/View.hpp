@@ -55,6 +55,7 @@ private:
     ShapeRef mCountry;
     ShapeRef mBirth;
     ShapeRef mDeath;
+    
     ci::Color mBeginC;
     ci::Color mEndC;
     ci::Color mDonateC;
@@ -63,8 +64,9 @@ private:
     ci::Color mDeathC;
     
     void drawView(met::backgroundData data);
-    void refreshData(met::artWorkData data);
-    void mouseHandler();
+    //void refreshData(met::artWorkData data);
+    void mouseHandler(po::scene::MouseEvent &event );
+    void onViewMouseEvent(po::scene::MouseEvent &event);
     void showPopup(met::artWorkData data);
     
     

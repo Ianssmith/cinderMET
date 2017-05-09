@@ -79,7 +79,7 @@ private:
     void createView(met::backgroundData);
     
     //plot events
-    //void onViewMouseEvent(po::scene::MouseEvent &event);
+    void onViewMouseEvent(po::scene::MouseEvent &event);
     
     //UI events
     void onUIMouseEvent(po::scene::MouseEvent &event, uiButtonRef button);

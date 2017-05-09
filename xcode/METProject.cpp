@@ -45,11 +45,11 @@ void METProject::setup()
     
     mInitView = mDataManager->DataManager::getInitialData();
     
-    //createUI();
+    createUI();
     createView(mInitView);
     
     //Mouse events
-    //getSignal(po::scene::MouseEvent::DOWN).connect(std::bind(&METProject::onViewMouseEvent, this, std::placeholders::_1));
+    //getSignal(MouseEvent::DOWN).connect(std::bind(&METProject::onViewMouseEvent, this, std::placeholders::_1));
     //getSignal(po::scene::MouseEvent::MOVE).connect(std::bind(&METProject::onUIMouseEvent, this, std::placeholders::_1));
    //or something ^^
     
@@ -62,9 +62,13 @@ void METProject::createDataManager()
     mDataManager = DataManager::create();
     
 }
-    
+
+//_____This creates the ui buttons and puts them into a map or associative array the keys are the mButtonLables
+
 void METProject::createUI()
 {
+    // ____Map keys and also the text for the buttons
+    
     mButtonLabels = {
         "Boxes/Points",
         "Birth of Project",
@@ -74,44 +78,59 @@ void METProject::createUI()
         "Artist Birth",
         "Artist Death"
     };
+    //_____makes the poscene container for the buttons
     mUIContainer = NodeContainer::create();
     addChild(mUIContainer);
     mUIContainer->setPosition(30,30);
     
+    //_____ makes the buttons using the buttonLabels
     for (int i=0;i < mButtonLabels.size(); i++){
         uiButtonRef button = uiButton::create(mButtonLabels[i]);
         mUIContainer->addChild(button);
         button->setAlpha(1)
         .setPosition(i*(button->getWidth()*1.25)+50, 0);
         
-
+    //_____ sticks the buttons in the map
+        
         muiButtons[mButtonLabels[i]] = button;
         button->getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&METProject::onUIMouseEvent, this, std::placeholders::_1, button));
         //button->getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&METProject::onUIMouseEvent, this, std::placeholders::_1, button));
         //mColorSquare->getSignal(MouseEvent::DOWN_INSIDE).connect(std::bind(&AnimationSquare::doColorAnimation, mColorSquare));
     }
 }
-    
+
+//_____ makes the visualization
+
 void METProject::createView(met::backgroundData data)
 {
+    //_____makes poscene container
+    
     mViewContainer = NodeContainer::create();
     addChild(mViewContainer);
     mViewContainer->setPosition(0,0);
     
-    //for(int i=0;i<data.beginDates.size();i++){
-        //cout<<data.beginDates[i]<<endl;
-        //set circle values on data
-        //ci::vec2 mBeginCenter = ci::vec2(data.beginDates[i],(i*20)+100);
-        //ci::vec2 mEndCenter = ci::vec2(data.endDates[i],(i*20)+100);
-        //ci::vec2 mDonatedCenter = ci::vec2(data.donationDates[i],(i*20)+100);
-        //cout<<mBeginCenter<<endl;
-        //draw points
-        //mView = View::create(mBeginCenter, mEndCenter, mDonatedCenter);
+    //_____ calls View create function and adds them to viewcontainer
+    
     ViewRef mView = View::create(data);
-    mViewContainer->addChild(mView);// i'm adding my data viz view to this nodecontainer
-    //}
+    mViewContainer->addChild(mView);
+    
+    
+        //alternative method calls create in a loop instead of create containing a loop
+         //for(int i=0;i<data.beginDates.size();i++){
+             //cout<<data.beginDates[i]<<endl;
+             //set circle values on data
+             //ci::vec2 mBeginCenter = ci::vec2(data.beginDates[i],(i*20)+100);
+             //ci::vec2 mEndCenter = ci::vec2(data.endDates[i],(i*20)+100);
+             //ci::vec2 mDonatedCenter = ci::vec2(data.donationDates[i],(i*20)+100);
+             //cout<<mBeginCenter<<endl;
+             //draw points
+             //mView = View::create(mBeginCenter, mEndCenter, mDonatedCenter);
+         //}
     
 }
+
+////
+// The below stuff is where the mouse interaction is and is not quite finished
 
 void METProject::onUIMouseEvent(po::scene::MouseEvent &event, uiButtonRef button)
 {
@@ -151,8 +170,6 @@ void METProject::onUIMouseEvent(po::scene::MouseEvent &event, uiButtonRef button
 }
     
     
-    //addChild(mMainMenu);
-    //addChild(mTopBar);
     
 void METProject::buttonHighlight(std::string name)
 {

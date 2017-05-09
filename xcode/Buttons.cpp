@@ -24,15 +24,15 @@ mHighlightColor(ci::Color(209.f/255, 203.f/255, 190.f/255))
 }
 uiButton::~uiButton(){};
 
+//This part is where I left off along with the view mouse events
+//basically the part that is working and seen when the program runs is the ci::TextBox portion marked below ###
+//all The other stuff is work in progress
+
 void uiButton::setup(std::string name)
 {
-    //make highlight
-    mHighlight = Shape::createRect(100,29);
-    mHighlight->setFillColor(mHighlightColor);
-    addChild(mHighlight);
-    mHighlight->setAlpha(0);
     
-    //create button
+    //create button: called in the createUI function of METProject.cpp
+    // ### this part v
     ci::TextBox textbox = ci::TextBox();
     textbox.text(name);
     textbox.color(mTextColor);
@@ -44,9 +44,26 @@ void uiButton::setup(std::string name)
     mTextBox = TextBox::create(textbox);
     addChild(mTextBox);
     mTextBox->setPosition(0,0);
+    // ^
+    
+    
+    
+    //make highlight initially transparent and Alpha animation is called when the mouse goes over it
+    mHighlight = Shape::createRect(100,29);
+    mHighlight->setFillColor(mHighlightColor);
+    addChild(mHighlight);
+    mHighlight->setAlpha(0);
 }
 
 void uiButton::highlight()
+{
+    ci::app::timeline().apply(&mHighlight->getAlphaAnim(), 1.0f,0.2f);
+    //ci::app::timeline().apply(&mHighlight->getFillColorAnim(),mHighlightColor);
+    //ci::app::timeline().appendTo(&mHighlight->getFillColorAnim(),mHighlightColor);
+    ci::app::timeline().appendTo(&mHighlight->getAlphaAnim(), 0.0f,0.2f);
+}
+
+void uiButton::onUIMouseEvent(po::scene::MouseEvent &event)
 {
     ci::app::timeline().apply(&mHighlight->getAlphaAnim(), 1.0f,0.2f);
     //ci::app::timeline().apply(&mHighlight->getFillColorAnim(),mHighlightColor);
@@ -64,10 +81,11 @@ void uiButton::setSelected(bool isSelected)
     }
     
 }
-std::string uiButton::getName()
-{
-    return this->getName();
-};
+
+//std::string uiButton::getName()
+//{
+//  return this->getName();
+//};
 
 void uiButton::reset()
 {

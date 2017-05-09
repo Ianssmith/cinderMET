@@ -54,6 +54,7 @@ void DataManager::setup()
 
 
 
+//____Gets data from file and puts into structs (type met::objData) and then into a map (type met::objMap) "artWorks"
 met::objMap DataManager::parsejson(DataSourceRef file){
 //std::map<string, objData> Model::parsejson(DataSourceRef file){
     try{
@@ -88,6 +89,7 @@ met::objMap DataManager::parsejson(DataSourceRef file){
     }
 }
 
+//_____Converts year values into values scaled for the drawing window
 met::backgroundData DataManager::convertYears(std::vector<int> bdates,std::vector<int> edates,std::vector<int> ddates,std::vector<std::string> title){
     int mindate = 1350;
     int maxdate = 2017;
@@ -104,6 +106,7 @@ met::backgroundData DataManager::convertYears(std::vector<int> bdates,std::vecto
     return initView;
 }
 
+//_____ getter funtion for the backgroundData struct for the initial viz
 met::backgroundData DataManager::getInitialData(){return mInitialView;};
 
 //met::objMap DataManager::getObjectData(){return artWorks;};

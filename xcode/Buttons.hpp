@@ -52,7 +52,7 @@ private:
     ci::Color mHighlightColor;
     
     //	Mouse events
-    void onMouseEvent(po::scene::MouseEvent &event);
+    void onUIMouseEvent(po::scene::MouseEvent &event);
     
     //	Set selected state
     void setSelected(bool isSelected);
