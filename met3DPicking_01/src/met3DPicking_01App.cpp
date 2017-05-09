@@ -50,7 +50,7 @@ void met3DPicking_01App::setup()
 {
     // Create the mesh.
     mCube = geom::WireCube().subdivisions( 100 );
-    *p = mCube.subdivisionsX(1);
+    //*p = mCube.subdivisionsX(1);
     mTriMesh = TriMesh::create( mCube );
     
     // Get the object space bounding box of the model, for fast intersection testing.
@@ -96,7 +96,7 @@ void met3DPicking_01App::draw()
         //gl::ScopedModelMatrix model;
         //gl::multModelMatrix( mTransform );
         
-        //mMesh->draw();
+        mMesh->draw();
     
     
     // Perform 3D picking now, so we can draw the result as a vector.
