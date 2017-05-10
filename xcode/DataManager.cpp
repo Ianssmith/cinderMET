@@ -106,7 +106,7 @@ met::backgroundData DataManager::convertYears(std::vector<int> bdates,std::vecto
 //_____ getter funtion for the backgroundData struct for the initial viz
 met::backgroundData DataManager::getInitialData(){return mInitialView;};
 
-//met::objMap DataManager::getObjectData(){return artWorks;};
+met::artWorkData getArtworkData(std::string key, met::objMap map){return map[key];}
 
 
 

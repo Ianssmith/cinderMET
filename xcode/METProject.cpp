@@ -61,13 +61,13 @@ void METProject::createUI()
     // ____Map keys and also the text for the buttons
     
     mButtonLabels = {
-        "Boxes/Points",
+        //"Boxes/Points",
         "Birth of Project",
         "Completion Year of Project",
-        "Year Donated to MET",
-        "Artist Country",
-        "Artist Birth",
-        "Artist Death"
+        "Year Donated to MET"//,
+        //"Artist Country",
+        //"Artist Birth",
+        //"Artist Death"
     };
     //_____makes the poscene container for the buttons
     mUIContainer = NodeContainer::create();
@@ -79,7 +79,8 @@ void METProject::createUI()
         uiButtonRef button = uiButton::create(mButtonLabels[i]);
         mUIContainer->addChild(button);
         button->setAlpha(1)
-        .setPosition(i*(button->getWidth()*1.25)+50, 0);
+            .setPosition(i*(button->getWidth()*1.25)+50, 0);
+        
         button->getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&uiButton::onUIClickEvent, button));
         button->getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&uiButton::onUIMouseEvent, button));
         

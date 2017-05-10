@@ -7,6 +7,11 @@
 //
 
 #include "Buttons.hpp"
+#include "cinder/app/App.h"
+
+//#include "cinder/Text.h"
+using namespace ci::app;
+
 
 uiButtonRef uiButton::create(std::string name)
 {
@@ -33,13 +38,14 @@ void uiButton::setup(std::string name)
     ci::TextBox textbox = ci::TextBox();
     textbox.text(name);
     textbox.color(mTextColor);
-    textbox.backgroundColor(mColor);
+    textbox.backgroundColor(ci::Color(1,1,1));
     //textbox.color(ci::Color(1,1,1));
     textbox.size(100,29);
     
     //Add to uiNode
     mTextBox = TextBox::create(textbox);
     mTextBox->setPosition(0,0);
+    //mTextBox->setAlignment(po::scene::Alignment::CENTER_CENTER);
     // ^
     //mTextBox->getSignal(MouseEvent::DOWN_INSIDE).connect(std::bind(&uiButton::onUIMouseEvent, this, std::placeholders::_1));
     //mTextBox->getSignal(MouseEvent::UP_INSIDE).connect(std::bind(&uiButton::onUIMouseEvent, this, std::placeholders::_1));
@@ -49,11 +55,13 @@ void uiButton::setup(std::string name)
 
 void uiButton::onUIMouseEvent()
 {
-    ci::app::timeline().apply(&mTextBox->getFillColorAnim(), mHighlightColor, 0.5);
+    ci::app::timeline().apply(&mTextBox->getFillColorAnim(), mColor, 0.1);
+    ci::app::timeline().appendTo(&mTextBox->getFillColorAnim(), ci::Color(1,1,1), 0.5);
 }
 void uiButton::onUIClickEvent()
 {
-    std::cout<<mTextBox->getName()<<std::endl;
+    ci::TextBox button_copy = mTextBox->getCiTextBoxCopy();
+    std::cout<<button_copy.getText()<<std::endl;
     ci::app::timeline().apply(&mTextBox->getFillColorAnim(), mHighlightColor, 0.5);
 }
                                               

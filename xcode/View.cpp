@@ -10,8 +10,8 @@
 #include "View.hpp"
 #include "METProject.hpp"
 #include "../src/common.h"
-#include "poNodeContainer.h"
-#include "poShape.h"
+//#include "poNodeContainer.h"
+//#include "poShape.h"
 
 
 ViewRef View::create(met::backgroundData data){
@@ -54,12 +54,12 @@ void View::setup(met::backgroundData data)
         mArtBegin->setFillColor(mBeginC);
         mArtBegin->setPosition(mBeginCenter);
         mArtBegin->setAlignment(po::scene::Alignment::CENTER_CENTER);
+        //mArtBegin->getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&View::onViewMouseEvent,mArtBegin));
+        //mArtBegin->getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&View::onViewClickEvent, mArtBegin));
         addChild(mArtBegin);
         
-        //   These are meant to be the peices which listen for most over and mouse clock on the circles on the plot
-        //    Im not sure why they arent working
-        //mArtBegin->getSignal(po::scene::MouseEvent::Type::MOVE_INSIDE).connect(std::bind(&View::mouseHandler,this, std::placeholders::_1));
-        //mArtBegin->getSignal(po::scene::MouseEvent::Type::DOWN_INSIDE).connect(std::bind(&View::mouseHandler, this, std::placeholders::_1));
+        //button->getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&uiButton::onUIClickEvent, button));
+        //button->getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&uiButton::onUIMouseEvent, button));
         
         //____This is just another circle to make the begin dat circles look like they have no fill
         mbeginoutline = Shape::createCircle(mCircleRadius-3);
@@ -102,5 +102,27 @@ void View::setup(met::backgroundData data)
         //mCountry;
         //mBirth;
         //mDeath;
+    //getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&View::onViewMouseEvent, this, std::placeholders::_1));
+    //getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&View::onViewClickEvent, this, std::placeholders::_1));
     }
 }
+
+void View::onViewMouseEvent()
+{
+    ci::app::timeline().apply(&this->getScaleAnim(), ci::vec2(1.5f, 1.5f), 0.5);
+    ci::app::timeline().appendTo(&this->getScaleAnim(), ci::vec2(1.f, 1.f), 0.5);
+}
+void View::onViewClickEvent()
+{
+    //ci::TextBox button_copy = mTextBox->getCiTextBoxCopy();
+    //std::cout<<button_copy.getText()<<std::endl;
+    //ci::app::timeline().apply(&mTextBox->getFillColorAnim(), mHighlightColor, 0.5);
+}
+                                              
+                                              
+                                              
+                                              
+                                              
+                
+                                              
+

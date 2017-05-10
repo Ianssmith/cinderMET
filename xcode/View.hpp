@@ -40,6 +40,9 @@ public:
     virtual void setup(met::backgroundData);
     //virtual void setup(ci::vec2, ci::vec2, ci::vec2);
     
+    void onViewMouseEvent();
+    void onViewClickEvent();
+    
 protected:
     //Constructor
     View();
