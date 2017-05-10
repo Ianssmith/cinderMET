@@ -8,16 +8,7 @@
 //
 
 #include "METProject.hpp"
-#include "View.hpp"
-//#include "Buttons.hpp"
-#include "DataManager.hpp"
-#include "../src/common.h"
 
-using namespace ci;
-using namespace ci::app;
-using namespace std;
-
-using namespace po::scene;
 
 METProjectRef METProject::create()
 {
@@ -30,6 +21,7 @@ METProject::~METProject()
 {
     
 }
+
 METProject::METProject()
 {
     
@@ -38,20 +30,28 @@ METProject::METProject()
 
 void METProject::setup()
 {
-    
-    //mDataManager = DataManager::create();
-    
     createDataManager();
     
     mInitView = mDataManager->DataManager::getInitialData();
     
     createUI();
     createView(mInitView);
+    createView3D();
     
     //Mouse events
     //getSignal(MouseEvent::DOWN).connect(std::bind(&METProject::onViewMouseEvent, this, std::placeholders::_1));
     //getSignal(po::scene::MouseEvent::MOVE).connect(std::bind(&METProject::onUIMouseEvent, this, std::placeholders::_1));
    //or something ^^
+    
+}
+
+void METProject::update()
+{
+
+}
+
+void METProject::draw()
+{
     
 }
 
@@ -126,6 +126,21 @@ void METProject::createView(met::backgroundData data)
              //draw points
              //mView = View::create(mBeginCenter, mEndCenter, mDonatedCenter);
          //}
+    
+}
+
+void METProject::createView3D()
+{
+    //_____makes poscene container
+    
+    mView3DContainer = NodeContainer::create();
+    addChild(mView3DContainer);
+    mViewContainer->setPosition(0,0);
+    
+    //_____ calls View create function and adds them to viewcontainer
+    
+    View3DRef mView3D = View3D::create();
+    mView3DContainer->addChild(mView3D);
     
 }
 

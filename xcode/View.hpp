@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include "poNodeContainer.h"
 #include "poShape.h"
+#include "poScene.h"
+#include "cinder/Signals.h"
 
 //#include "Controller.hpp"
 #include "DataManager.hpp"

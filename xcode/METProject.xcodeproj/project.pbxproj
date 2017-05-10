@@ -19,6 +19,7 @@
 		103992CDE1F74A4DA3DCFED7 /* poMatrixSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48856FD727CE48E79757C7EA /* poMatrixSet.cpp */; };
 		1E278F6C3C7448E7B83A5A3C /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1D5EEE5A69214E8DA46F5E70 /* CinderApp.icns */; };
 		207F80C699B247458301F40E /* poTextBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D955AF5311B41E5890C1486 /* poTextBox.cpp */; };
+		23D6BE3F1EC3191C00A0C8F3 /* 3DView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23D6BE3D1EC3191C00A0C8F3 /* 3DView.cpp */; };
 		277D01165133422F95A12518 /* poEvents.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5F4B487EB0444479A35BDCC /* poEvents.cpp */; };
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		55E9DB4E49D14A338625176B /* METProjectApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93C89627EB9A4D47BB6FD488 /* METProjectApp.cpp */; };
@@ -48,6 +49,8 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		113508FFFA3B49458BF5A368 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D5EEE5A69214E8DA46F5E70 /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CinderApp.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; };
+		23D6BE3D1EC3191C00A0C8F3 /* 3DView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = 3DView.cpp; path = ../src/3DView.cpp; sourceTree = "<group>"; };
+		23D6BE3E1EC3191C00A0C8F3 /* 3DView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = 3DView.h; path = ../src/3DView.h; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		2D955AF5311B41E5890C1486 /* poTextBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = poTextBox.cpp; path = ../blocks/poScene/src/poScene/poTextBox.cpp; sourceTree = "<group>"; };
@@ -122,6 +125,8 @@
 				93C89627EB9A4D47BB6FD488 /* METProjectApp.cpp */,
 				91D87A251EAFD8D6008C7814 /* DataManager.cpp */,
 				91D87A261EAFD8D6008C7814 /* DataManager.hpp */,
+				23D6BE3D1EC3191C00A0C8F3 /* 3DView.cpp */,
+				23D6BE3E1EC3191C00A0C8F3 /* 3DView.h */,
 				91D87A221EAFD886008C7814 /* View.cpp */,
 				91D87A231EAFD886008C7814 /* View.hpp */,
 				91460B621EBD717400D40C9B /* Buttons.cpp */,
@@ -321,6 +326,7 @@
 				CE590B532404452CBCA15973 /* poEventCenter.cpp in Sources */,
 				277D01165133422F95A12518 /* poEvents.cpp in Sources */,
 				AC61E17E4C3E4027A608963C /* poImage.cpp in Sources */,
+				23D6BE3F1EC3191C00A0C8F3 /* 3DView.cpp in Sources */,
 				103992CDE1F74A4DA3DCFED7 /* poMatrixSet.cpp in Sources */,
 				F6BCE143F2594E0E8265D527 /* poNode.cpp in Sources */,
 				DD41F60D9EB249B482C7F97F /* poNodeContainer.cpp in Sources */,

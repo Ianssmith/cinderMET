@@ -12,8 +12,9 @@
 #include <stdio.h>
 #include "poNodeContainer.h"
 #include "poShape.h"
-
+#include "poScene.h"
 #include "View.hpp"
+#include "../src/3DView.h"
 #include "Buttons.hpp"
 #include "DataManager.hpp"
 #include "../src/common.h"
@@ -38,24 +39,14 @@ public:
     
     void setup();
     
-    //void update();
-    //void draw();
-    
-    
-    //void updateView(int number);
-    //void initializeView(met::backgroundData);
-
-//mDataManager = DataManager::create();
-
-//mView->refreshData( mDataManager->getArtworkData(key));
-
-
-
+    void update();
+    void draw();
     
 private:
     
     DataManagerRef mDataManager;
     ViewRef mView;
+    View3DRef mView3D;
     
     std::vector<std::string> mButtonLabels;
 	std::map<std::string, uiButtonRef> muiButtons;
@@ -68,6 +59,7 @@ private:
     NodeContainerRef mUIContainer;
     //container for data primitives
     NodeContainerRef mViewContainer;
+    NodeContainerRef mView3DContainer;
     
     //create DataManager
     void createDataManager();
@@ -85,6 +77,8 @@ private:
     void onUIMouseEvent(po::scene::MouseEvent &event, uiButtonRef button);
     
     void buttonHighlight(std::string name);
+    
+    void createView3D();
     
     //Show popup
     void showPopup();

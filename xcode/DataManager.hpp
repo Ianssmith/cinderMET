@@ -25,7 +25,7 @@ typedef std::shared_ptr<DataManager> DataManagerRef;
 class DataManager
 : public po::scene::NodeContainer
 {
-public: 
+public:
     static DataManagerRef create();
     virtual ~DataManager();
     

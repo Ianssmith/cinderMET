@@ -17,6 +17,8 @@
 #include "poNodeContainer.h"
 #include "poTextBox.h"
 #include "poShape.h"
+#include "poScene.h"
+#include "cinder/Signals.h"
 
 using namespace po::scene;
 

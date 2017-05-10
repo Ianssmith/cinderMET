@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/ianssmith/Desktop/Parsons/Currents_Cinder/cinder_0.9.0_mac/cinderMET/blocks/poScene/src/poScene/poShape.cpp \
+  /Users/kimkohler/Desktop/cinder_0.9.0_mac/cinderMET/blocks/poScene/src/poScene/poShape.cpp \
   ../../include/cinder/Triangulate.h \
   ../blocks/poScene/src/poScene/poShape.h \
   ../blocks/poScene/src/poScene/poNode.h ../../include/cinder/Timeline.h \
