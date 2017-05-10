@@ -32,9 +32,8 @@ public:
     
     virtual void setup(std::string name);
     
-    //	Show highlight
-    void highlight();
-    std::string getName();
+    void onUIMouseEvent();
+    void onUIClickEvent();
     
 protected:
     uiButton();
@@ -43,18 +42,10 @@ private:
     //	Text box with event name
     TextBoxRef mTextBox;
     
-    //	Highlight shape
-    ShapeRef mHighlight;
-    
     //	Highlight color
     ci::Color mColor;
     ci::Color mTextColor;
     ci::Color mHighlightColor;
     
-    //	Mouse events
-    void onUIMouseEvent(po::scene::MouseEvent &event);
     
-    //	Set selected state
-    void setSelected(bool isSelected);
-	void reset();
 };

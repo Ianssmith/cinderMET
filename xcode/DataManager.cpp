@@ -13,9 +13,6 @@
 #include "View.hpp"
 #include "../src/common.h"
 
-using namespace ci;
-using namespace ci::app;
-using namespace std;
 
 
 //const DataSourceRef data;

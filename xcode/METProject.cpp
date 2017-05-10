@@ -13,11 +13,6 @@
 #include "DataManager.hpp"
 #include "../src/common.h"
 
-using namespace ci;
-using namespace ci::app;
-using namespace std;
-
-using namespace po::scene;
 
 METProjectRef METProject::create()
 {
@@ -48,10 +43,6 @@ void METProject::setup()
     createUI();
     createView(mInitView);
     
-    //Mouse events
-    //getSignal(MouseEvent::DOWN).connect(std::bind(&METProject::onViewMouseEvent, this, std::placeholders::_1));
-    //getSignal(po::scene::MouseEvent::MOVE).connect(std::bind(&METProject::onUIMouseEvent, this, std::placeholders::_1));
-   //or something ^^
     
 }
 
@@ -89,13 +80,11 @@ void METProject::createUI()
         mUIContainer->addChild(button);
         button->setAlpha(1)
         .setPosition(i*(button->getWidth()*1.25)+50, 0);
+        button->getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&uiButton::onUIClickEvent, button));
+        button->getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&uiButton::onUIMouseEvent, button));
         
     //_____ sticks the buttons in the map
         
-        muiButtons[mButtonLabels[i]] = button;
-        button->getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&METProject::onUIMouseEvent, this, std::placeholders::_1, button));
-        //button->getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&METProject::onUIMouseEvent, this, std::placeholders::_1, button));
-        //mColorSquare->getSignal(MouseEvent::DOWN_INSIDE).connect(std::bind(&AnimationSquare::doColorAnimation, mColorSquare));
     }
 }
 
@@ -129,51 +118,3 @@ void METProject::createView(met::backgroundData data)
     
 }
 
-////
-// The below stuff is where the mouse interaction is and is not quite finished
-
-void METProject::onUIMouseEvent(po::scene::MouseEvent &event, uiButtonRef button)
-{
-    //ci::app::timeline().apply(&button->getFillColorAnim(), ci::Color(209.f/255, 203.f/255, 190.f/255), 0.5f);
-    //ci::app::timeline().appendTo(&button->getFillColorAnim(), ci::Color(209.f/255, 203.f/255, 190.f/255), 0.5f);
-    ci::app::timeline().apply(&button->getFillColorAnim(), ci::Color(0,0,0), 0.5f);
-    ci::app::timeline().appendTo(&button->getFillColorAnim(), ci::Color(1,1,1), 0.5f);
-    /*
-    //	Show the indicator for the event
-    switch (event.getType()) {
-    //switch (button->getName()) {
-        case po::scene::MouseEvent::MOVE_INSIDE:
-            buttonHighlight("Boxes/Points");
-            break;
-        case po::scene::MouseEvent::DOWN_INSIDE:
-            buttonHighlight("Birth of Project");
-            break;
-        case po::scene::MouseEvent::DOWN_INSIDE:
-            buttonHighlight("Completion Year of Project");
-            break;
-        case po::scene::MouseEvent::UP_INSIDE:
-            buttonHighlight("Year Donated to MET");
-            break;
-        case po::scene::MouseEvent::DRAG_INSIDE:
-            buttonHighlight("Artist Country");
-            break;
-        case po::scene::MouseEvent::DRAG_INSIDE:
-            buttonHighlight("Artist Birth");
-            break;
-        case po::scene::MouseEvent::DRAG_INSIDE:
-            buttonHighlight("Artist Death");
-            break;
-        default:
-            break;
-    }
-   */
-}
-    
-    
-    
-void METProject::buttonHighlight(std::string name)
-{
-    if(muiButtons.find(name) != muiButtons.end()){
-        muiButtons[name]->highlight();
-    }
-}

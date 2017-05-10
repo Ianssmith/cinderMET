@@ -13,10 +13,6 @@
 #include "poNodeContainer.h"
 #include "poShape.h"
 
-using namespace ci;
-using namespace ci::app;
-using namespace std;
-using namespace po::scene;
 
 ViewRef View::create(met::backgroundData data){
     ViewRef ref = std::shared_ptr<View>(new View());
@@ -108,33 +104,3 @@ void View::setup(met::backgroundData data)
         //mDeath;
     }
 }
-
-
-//This should be called when a mouse even happens on the points
-
-void View::mouseHandler(po::scene::MouseEvent &event ){
-    ci::app::timeline().apply(&mArtBegin->getScaleAnim(), ci::vec2(1.5f, 1.5f), 0.5);
-}
-
-void View::showPopup(met::artWorkData selected){
-    //show cool details
-    
-}
-
-/*
-void View::onViewMouseEvent(po::scene::MouseEvent &event)
-{
-    ci::app::timeline().apply(&mArtBegin->getScaleAnim(), ci::vec2(1.5f, 1.5f), 0.5);
-    //ci::app::timeline().apply(&mHighlight->getFillColorAnim(),mHighlightColor);
-    //ci::app::timeline().appendTo(&mHighlight->getFillColorAnim(),mHighlightColor);
-    //ci::app::timeline().appendTo(&mHighlight->getAlphaAnim(), 0.0f,0.2f);
-}
- */
-
-
-
-//void View::setup(ci::vec2 begin, ci::vec2 end, ci::vec2 donated){
-
-        //mArtBegin->setPosition(begin);
-        //mArtEnd->setPosition(end);
-        //mArtDonated->setPosition(donated);

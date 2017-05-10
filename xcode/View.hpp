@@ -65,9 +65,6 @@ private:
     
     void drawView(met::backgroundData data);
     //void refreshData(met::artWorkData data);
-    void mouseHandler(po::scene::MouseEvent &event );
-    void onViewMouseEvent(po::scene::MouseEvent &event);
-    void showPopup(met::artWorkData data);
     
     
     

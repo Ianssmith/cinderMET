@@ -38,20 +38,6 @@ public:
     
     void setup();
     
-    //void update();
-    //void draw();
-    
-    
-    //void updateView(int number);
-    //void initializeView(met::backgroundData);
-
-//mDataManager = DataManager::create();
-
-//mView->refreshData( mDataManager->getArtworkData(key));
-
-
-
-    
 private:
     
     DataManagerRef mDataManager;
@@ -77,16 +63,5 @@ private:
     
     //create viz
     void createView(met::backgroundData);
-    
-    //plot events
-    void onViewMouseEvent(po::scene::MouseEvent &event);
-    
-    //UI events
-    void onUIMouseEvent(po::scene::MouseEvent &event, uiButtonRef button);
-    
-    void buttonHighlight(std::string name);
-    
-    //Show popup
-    void showPopup();
 
 };
