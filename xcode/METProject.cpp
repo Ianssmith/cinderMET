@@ -42,6 +42,7 @@ void METProject::setup()
     
     createUI();
     createView(mInitView);
+    createView3D(mArtworkDetail);
     
     
 }
@@ -126,6 +127,21 @@ void METProject::createView(met::backgroundData data)
              //draw points
              //mView = View::create(mBeginCenter, mEndCenter, mDonatedCenter);
          //}
+    
+}
+
+void METProject::createView3D(met::artWorkData artData)
+{
+    //_____makes poscene container
+    
+    mView3DContainer = NodeContainer::create();
+    addChild(mView3DContainer);
+    mViewContainer->setPosition(0,0);
+    
+    //_____ calls View create function and adds them to viewcontainer
+    
+    View3DRef mView3D = View3D::create(artData);
+    mView3DContainer->addChild(mView3D);
     
 }
 
