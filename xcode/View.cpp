@@ -47,6 +47,7 @@ void View::setup(met::backgroundData data)
     float mCircleRadius = 10;
     for(int i=0;i<data.beginDates.size();i++){
         //_____put plot vals into variables
+        console() << data.beginDates[i] << endl;
         ci::vec2 mBeginCenter = ci::vec2(data.beginDates[i],(i*12)+50);
         ci::vec2 mEndCenter = ci::vec2(data.endDates[i],(i*12)+50);
         ci::vec2 mDonatedCenter = ci::vec2(data.donationDates[i],(i*12)+50);

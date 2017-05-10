@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include "poNodeContainer.h"
 #include "poShape.h"
-
+#include "View3D.h"
 #include "View.hpp"
 #include "Buttons.hpp"
 #include "DataManager.hpp"
@@ -56,6 +56,7 @@ private:
     
     DataManagerRef mDataManager;
     ViewRef mView;
+    View3DRef mView3D;
     
     std::vector<std::string> mButtonLabels;
 	std::map<std::string, uiButtonRef> muiButtons;
@@ -68,9 +69,14 @@ private:
     NodeContainerRef mUIContainer;
     //container for data primitives
     NodeContainerRef mViewContainer;
+    //container for 3d view
+    NodeContainerRef mView3DContainer;
     
     //create DataManager
     void createDataManager();
+    
+    //3D View
+    void createView3D(met::artWorkData);
     
     //create UI
     void createUI();
