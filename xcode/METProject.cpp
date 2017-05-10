@@ -84,9 +84,19 @@ void METProject::createUI()
         button->getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&uiButton::onUIClickEvent, button));
         button->getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&uiButton::onUIMouseEvent, button));
         
-    //_____ sticks the buttons in the map
         
     }
+    uiButtonRef startYear = uiButton::create("1400 - earliest");
+    uiButtonRef lastYear = uiButton::create("2016 - latest");
+    mUIContainer->addChild(startYear);
+    mUIContainer->addChild(lastYear);
+    startYear->setFillColor(ci::Color(54.f/255, 55.f/255, 52.f/255));
+    lastYear->setFillColor(ci::Color(54.f/255, 55.f/255, 52.f/255));
+    startYear->setStrokeColor(ci::Color(0,0,0));
+    lastYear->setStrokeColor(ci::Color(0,0,0));
+    startYear->setPosition(22,650);
+    lastYear->setPosition(850,650);
+    
 }
 
 //_____ makes the visualization

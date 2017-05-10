@@ -102,8 +102,9 @@ void View::setup(met::backgroundData data)
         //mCountry;
         //mBirth;
         //mDeath;
-    //getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&View::onViewMouseEvent, this, std::placeholders::_1));
-    //getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&View::onViewClickEvent, this, std::placeholders::_1));
+    //getSignal(MouseEvent::DOWN_INSIDE).connect(std::bind(&AnimationSquare::showIndicator, this));
+    getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&View::onViewMouseEvent, this));
+    getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&View::onViewClickEvent, this));
     }
 }
 
