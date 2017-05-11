@@ -110,8 +110,8 @@ void View::setup(met::backgroundData data)
 
 void View::onViewMouseEvent()
 {
-    ci::app::timeline().apply(&this->getScaleAnim(), ci::vec2(1.5f, 1.5f), 0.5);
-    ci::app::timeline().appendTo(&this->getScaleAnim(), ci::vec2(1.f, 1.f), 0.5);
+    //ci::app::timeline().apply(&this->getScaleAnim(), ci::vec2(1.5f, 1.5f), 0.5);
+    //ci::app::timeline().appendTo(&this->getScaleAnim(), ci::vec2(1.f, 1.f), 0.5);
 }
 void View::onViewClickEvent()
 {
