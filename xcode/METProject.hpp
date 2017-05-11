@@ -63,6 +63,6 @@ private:
     void createUI();
     
     //create viz
-    void createView(met::backgroundData);
+    void createView(met::backgroundData, met::objMap);
 
 };

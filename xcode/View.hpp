@@ -31,22 +31,20 @@ class View
 {
 public:
     
-    static ViewRef create(met::backgroundData);
+    static ViewRef create(met::backgroundData, met::objMap);
     //static ViewRef create(ci::vec2, ci::vec2, ci::vec2);
+    
     
     //Deconstructor
     virtual ~View();
     
-    virtual void setup(met::backgroundData);
+    virtual void setup(met::backgroundData, met::objMap);
     //virtual void setup(ci::vec2, ci::vec2, ci::vec2);
     
     void onViewMouseEvent(po::scene::MouseEvent &event);
     void onViewClickEvent(po::scene::MouseEvent &event);
     
-    met::artWorkData showPopup(met::objMap &Odata);
-    met::artWorkData popupdata;
     
-    int titlekeyval;
     
 protected:
     //Constructor
@@ -54,7 +52,12 @@ protected:
     
 private:
     //void drawPrimitives(vector<float>, vector<float>, vector<float>);
+    met::objMap artWorkData;
+    int titlekeyval;
     std::string lookupval;
+    
+    met::artWorkData showPopup(met::objMap Odata, int keylookupval);
+    met::artWorkData popupdata;
     
     ShapeRef mArtBegin;
     ShapeRef mbeginoutline;

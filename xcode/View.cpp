@@ -14,9 +14,9 @@
 //#include "poShape.h"
 
 
-ViewRef View::create(met::backgroundData data){
+ViewRef View::create(met::backgroundData data, met::objMap Odata){
     ViewRef ref = std::shared_ptr<View>(new View());
-    ref->setup(data);
+    ref->setup(data, Odata);
     //ViewRef View::create(ci::vec2 begin, ci::vec2 end, ci::vec2 donated){
     //ref->setup(begin, end, donated);
     return ref;
@@ -38,8 +38,9 @@ View::~View()
 }
 
 //_____This is where the background plot is drawn
-void View::setup(met::backgroundData data)
+void View::setup(met::backgroundData data, met::objMap Odata)
 {
+    artWorkData = Odata;
     float mCircleRadius = 10;
     for(int i=0;i<data.beginDates.size();i++){
         //_____put plot vals into variables
@@ -118,9 +119,9 @@ void View::onViewClickEvent(po::scene::MouseEvent &event)
 {
     titlekeyval = event.getSource()->getDrawOrder();
     
-    //popupdata = showPopup(METProject::mArtWorkData);
+    popupdata = showPopup(artWorkData, titlekeyval);
     
-    
+    std::cout<< popupdata.Artist << std::endl;
     //std::cout<<event.getSource()<<std::endl;
     //p = &event.getSource()->getIndexPosition
     //met::backgroundData pt = &event.getSource()->getIndexPosition();
@@ -132,10 +133,10 @@ void View::onViewClickEvent(po::scene::MouseEvent &event)
     //ci::app::timeline().apply(&mTextBox->getFillColorAnim(), mHighlightColor, 0.5);
 }
 
-met::artWorkData View::showPopup(met::objMap &Odata)
+met::artWorkData View::showPopup(met::objMap Odata, int keylookupval)
 {
     for(int i=0;i<titlelookup.size();i++){
-        if(i ==  titlekeyval){
+        if(i ==  keylookupval){
             lookupval = titlelookup[i];
         }
     }

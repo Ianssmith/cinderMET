@@ -43,7 +43,7 @@ void METProject::setup()
     mArtWorkData = mDataManager->DataManager::getArtworks();
     
     createUI();
-    createView(mInitView);
+    createView(mInitView, mArtWorkData);
     
     
 }
@@ -108,7 +108,7 @@ void METProject::createUI()
 
 //_____ makes the visualization
 
-void METProject::createView(met::backgroundData data)
+void METProject::createView(met::backgroundData data, met::objMap Odata)
 {
     //_____makes poscene container
     
@@ -118,7 +118,7 @@ void METProject::createView(met::backgroundData data)
     
     //_____ calls View create function and adds them to viewcontainer
     
-    ViewRef mView = View::create(data);
+    ViewRef mView = View::create(data, Odata);
     mViewContainer->addChild(mView);
     
     
