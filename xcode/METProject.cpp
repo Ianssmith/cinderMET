@@ -42,7 +42,7 @@ void METProject::setup()
     
     createUI();
     createView(mInitView);
-    createView3D(mArtworkDetail);
+    createView3D(mInitView);
     
     
 }
@@ -130,7 +130,7 @@ void METProject::createView(met::backgroundData data)
     
 }
 
-void METProject::createView3D(met::artWorkData artData)
+void METProject::createView3D(met::backgroundData artData)
 {
     //_____makes poscene container
     

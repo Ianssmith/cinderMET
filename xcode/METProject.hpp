@@ -62,7 +62,7 @@ private:
     void createDataManager();
     
     //3D View
-    void createView3D(met::artWorkData);
+    void createView3D(met::backgroundData);
     
     //create UI
     void createUI();

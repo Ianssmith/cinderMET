@@ -88,14 +88,14 @@ met::objMap DataManager::parsejson(DataSourceRef file){
 
 //_____Converts year values into values scaled for the drawing window
 met::backgroundData DataManager::convertYears(std::vector<int> bdates,std::vector<int> edates,std::vector<int> ddates,std::vector<std::string> title){
-    int mindate = 1350;
-    int maxdate = 2017;
+    //int mindate = 1350;
+    //int maxdate = 2017;
     
     met::backgroundData initView;
     for(int i=0;i<bdates.size();i++){
-        initView.beginDates.push_back(((bdates[i]-mindate)*(ci::app::getWindowWidth()-100))/(maxdate-mindate));
-        initView.endDates.push_back(((edates[i]-mindate)*(ci::app::getWindowWidth()-100))/(maxdate-mindate));
-        initView.donationDates.push_back(((ddates[i]-mindate)*(ci::app::getWindowWidth()-100))/(maxdate-mindate));
+        initView.beginDates.push_back(bdates[i]);
+        initView.endDates.push_back(edates[i]);
+        initView.donationDates.push_back(ddates[i]);
         initView.titles.push_back(title[i]);
         
         //cout<<initView.beginDates[i]<<endl;
