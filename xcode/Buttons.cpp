@@ -53,12 +53,12 @@ void uiButton::setup(std::string name)
     addChild(mTextBox);
 }
 
-void uiButton::onUIMouseEvent()
+void uiButton::onUIMouseEvent(po::scene::MouseEvent &event)
 {
     ci::app::timeline().apply(&mTextBox->getFillColorAnim(), mColor, 0.1);
     ci::app::timeline().appendTo(&mTextBox->getFillColorAnim(), ci::Color(1,1,1), 0.5);
 }
-void uiButton::onUIClickEvent()
+void uiButton::onUIClickEvent(po::scene::MouseEvent &event)
 {
     ci::TextBox button_copy = mTextBox->getCiTextBoxCopy();
     std::cout<<button_copy.getText()<<std::endl;

@@ -40,8 +40,13 @@ public:
     virtual void setup(met::backgroundData);
     //virtual void setup(ci::vec2, ci::vec2, ci::vec2);
     
-    void onViewMouseEvent();
-    void onViewClickEvent();
+    void onViewMouseEvent(po::scene::MouseEvent &event);
+    void onViewClickEvent(po::scene::MouseEvent &event);
+    
+    met::artWorkData showPopup(met::objMap &Odata);
+    met::artWorkData popupdata;
+    
+    int titlekeyval;
     
 protected:
     //Constructor
@@ -49,6 +54,7 @@ protected:
     
 private:
     //void drawPrimitives(vector<float>, vector<float>, vector<float>);
+    std::string lookupval;
     
     ShapeRef mArtBegin;
     ShapeRef mbeginoutline;
@@ -69,6 +75,7 @@ private:
     void drawView(met::backgroundData data);
     //void refreshData(met::artWorkData data);
     
+    std::map<int, string> titlelookup;
     
     
     

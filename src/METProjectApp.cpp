@@ -20,9 +20,11 @@ public:
     void setup() override;
     void update() override;
     void draw() override;
-    int width = 1024;
-    int height = 768;
-
+    int width = 1424;
+    int height = 968;
+    
+    ci::gl::TextureRef mTexture;
+    
     SceneRef scene;
     
 };

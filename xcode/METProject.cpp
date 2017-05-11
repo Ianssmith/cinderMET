@@ -34,11 +34,13 @@ METProject::METProject()
 void METProject::setup()
 {
     
+    
     //mDataManager = DataManager::create();
     
     createDataManager();
     
     mInitView = mDataManager->DataManager::getInitialData();
+    mArtWorkData = mDataManager->DataManager::getArtworks();
     
     createUI();
     createView(mInitView);
@@ -64,8 +66,8 @@ void METProject::createUI()
         //"Boxes/Points",
         "Birth of Project",
         "Completion Year of Project",
-        "Year Donated to MET"//,
-        //"Artist Country",
+        "Year Donated to MET",
+        "Artist Country"
         //"Artist Birth",
         //"Artist Death"
     };
@@ -81,8 +83,8 @@ void METProject::createUI()
         button->setAlpha(1)
             .setPosition(i*(button->getWidth()*1.25)+50, 0);
         
-        button->getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&uiButton::onUIClickEvent, button));
-        button->getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&uiButton::onUIMouseEvent, button));
+        button->getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&uiButton::onUIClickEvent, button, std::placeholders::_1));
+        button->getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&uiButton::onUIMouseEvent, button, std::placeholders::_1));
         
         
     }
@@ -97,6 +99,11 @@ void METProject::createUI()
     startYear->setPosition(22,650);
     lastYear->setPosition(850,650);
     
+    //uiButtonRef startYear = uiButton::create("1400 - earliest");
+    //mUIContainer->addChild(startYear);
+    //startYear->setFillColor(ci::Color(54.f/255, 55.f/255, 52.f/255));
+    //startYear->setStrokeColor(ci::Color(0,0,0));
+    //startYear->setPosition(22,650);
 }
 
 //_____ makes the visualization

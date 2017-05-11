@@ -37,6 +37,7 @@ public:
     ~METProject();
     
     void setup();
+    met::objMap mArtWorkData;
     
 private:
     

@@ -35,6 +35,7 @@ public:
     //static met::backgroundData getInitialData();
     
     met::artWorkData getArtworkData(std::string, met::objMap);
+    met::objMap getArtworks();
 
 protected:
     DataManager();

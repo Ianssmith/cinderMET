@@ -33,8 +33,8 @@ public:
     
     virtual void setup(std::string name);
     
-    void onUIMouseEvent();
-    void onUIClickEvent();
+    void onUIMouseEvent(po::scene::MouseEvent &event);
+    void onUIClickEvent(po::scene::MouseEvent &event);
     
 protected:
     uiButton();

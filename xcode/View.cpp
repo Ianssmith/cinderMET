@@ -49,6 +49,7 @@ void View::setup(met::backgroundData data)
         //cout<<data.beginDates[i]<<endl;
         
         //_____draws the beginning date circle
+        titlelookup[i] = data.titles[i];
         
         mArtBegin = Shape::createCircle(mCircleRadius);
         mArtBegin->setFillColor(mBeginC);
@@ -103,21 +104,45 @@ void View::setup(met::backgroundData data)
         //mBirth;
         //mDeath;
     //getSignal(MouseEvent::DOWN_INSIDE).connect(std::bind(&AnimationSquare::showIndicator, this));
-    getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&View::onViewMouseEvent, this));
-    getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&View::onViewClickEvent, this));
+        getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&View::onViewMouseEvent, this, std::placeholders::_1));
+        getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&View::onViewClickEvent, this, std::placeholders::_1));
     }
 }
 
-void View::onViewMouseEvent()
+void View::onViewMouseEvent(po::scene::MouseEvent &event)
 {
-    ci::app::timeline().apply(&this->getScaleAnim(), ci::vec2(1.5f, 1.5f), 0.5);
-    ci::app::timeline().appendTo(&this->getScaleAnim(), ci::vec2(1.f, 1.f), 0.5);
+    //ci::app::timeline().apply(&event.getSource()->getScaleAnim(), ci::vec2(1.5f, 1.5f), 0.5);
+    //ci::app::timeline().appendTo(&event.getSource()->getScaleAnim(), ci::vec2(1.f, 1.f), 0.5);
 }
-void View::onViewClickEvent()
+void View::onViewClickEvent(po::scene::MouseEvent &event)
 {
+    titlekeyval = event.getSource()->getDrawOrder();
+    
+    //popupdata = showPopup(METProject::mArtWorkData);
+    
+    
+    //std::cout<<event.getSource()<<std::endl;
+    //p = &event.getSource()->getIndexPosition
+    //met::backgroundData pt = &event.getSource()->getIndexPosition();
+    
+    //string popup = uiButton::create(&event.getSource()->getName());
+    //&event.getWindowPos()
     //ci::TextBox button_copy = mTextBox->getCiTextBoxCopy();
     //std::cout<<button_copy.getText()<<std::endl;
     //ci::app::timeline().apply(&mTextBox->getFillColorAnim(), mHighlightColor, 0.5);
+}
+
+met::artWorkData View::showPopup(met::objMap &Odata)
+{
+    for(int i=0;i<titlelookup.size();i++){
+        if(i ==  titlekeyval){
+            lookupval = titlelookup[i];
+        }
+    }
+    std::cout<<lookupval<<std::endl;
+    //popupdata = DataManager::getArtWorkData(lookupval, &Odata);
+    
+    return popupdata;
 }
                                               
                                               
