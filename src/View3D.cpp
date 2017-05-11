@@ -105,8 +105,9 @@ void View3D::draw()
     //gl::multModelMatrix( mTransform );
     
     //mMesh->draw();
-    
-    
+    //gl::ScopedColor color( Color( 0, 1, 0 ) );
+    //gl::ScopedGlslProg shader( gl::getStockShader( gl::ShaderDef().color().lambert() ) );
+    //drawVertices(mObjectBounds, artObject);
     // Perform 3D picking now, so we can draw the result as a vector.
     vec3 pickedPoint, pickedNormal;
     if( performPicking( &pickedPoint, &pickedNormal ) ) {
@@ -265,8 +266,8 @@ void View3D::drawVertices( const AxisAlignedBox &bounds, met::backgroundData art
         gl::drawLine(bounds.getCenter() + pointEnd, bounds.getCenter() + pointDonated);
         gl::drawLine(bounds.getCenter() + pointDonated, bounds.getCenter() + pointBorn);
         gl::drawLine(bounds.getCenter() + pointBorn, bounds.getCenter() + pointBegin);
-        console() << "BeginDates: " << artData.beginDates[i] << endl;
-        console() << "pointBegin: " << pointBegin << endl;
+        //console() << "BeginDates: " << artData.beginDates[i] << endl;
+        //console() << "pointBegin: " << pointBegin << endl;
     }
 }
 

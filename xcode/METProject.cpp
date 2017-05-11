@@ -9,7 +9,6 @@
 
 #include "METProject.hpp"
 #include "View.hpp"
-//#include "Buttons.hpp"
 #include "DataManager.hpp"
 #include "../src/common.h"
 
@@ -41,8 +40,10 @@ void METProject::setup()
     mInitView = mDataManager->DataManager::getInitialData();
     
     createUI();
+    
     createView(mInitView);
     createView3D(mInitView);
+    
     
     
 }
@@ -81,9 +82,10 @@ void METProject::createUI()
         mUIContainer->addChild(button);
         button->setAlpha(1)
             .setPosition(i*(button->getWidth()*1.25)+50, 0);
-        
-        button->getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&uiButton::onUIClickEvent, button));
-        button->getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&uiButton::onUIMouseEvent, button));
+        // MouseEvent::Type::UP_INSIDE
+        //button->getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&uiButton::onUIClickEvent, button, std::placeholders::_1));
+        button->getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&uiButton::onUIMouseEvent, button, std::placeholders::_1));
+        //button->getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&uiButton::onUIClickEvent, button, std::placeholders::_1));
         
         
     }

@@ -52,7 +52,7 @@ void uiButton::setup(std::string name)
     //mTextBox->getSignal(MouseEvent::MOVE_INSIDE).connect(std::bind(&uiButton::onUIMouseEvent, this, std::placeholders::_1));
     addChild(mTextBox);
 }
-
+/*
 void uiButton::onUIMouseEvent()
 {
     ci::app::timeline().apply(&mTextBox->getFillColorAnim(), mColor, 0.1);
@@ -62,6 +62,23 @@ void uiButton::onUIClickEvent()
 {
     ci::TextBox button_copy = mTextBox->getCiTextBoxCopy();
     std::cout<<button_copy.getText()<<std::endl;
+    ci::app::timeline().apply(&mTextBox->getFillColorAnim(), mHighlightColor, 0.5);
+}*/
+
+void uiButton::onUIMouseEvent(po::scene::MouseEvent &event)
+{
+    ci::app::timeline().apply(&mTextBox->getFillColorAnim(), mColor, 0.1);
+    ci::app::timeline().appendTo(&mTextBox->getFillColorAnim(), ci::Color(1,1,1), 0.5);
+    //console() << "over" << std::endl;
+    ci::TextBox button_copy = mTextBox->getCiTextBoxCopy();
+    std::cout << button_copy.getText() << std::endl;
+    
+}
+
+void uiButton::onUIClickEvent(po::scene::MouseEvent &event)
+{
+    ci::TextBox button_copy = mTextBox->getCiTextBoxCopy();
+    std::cout << button_copy.getText() << std::endl;
     ci::app::timeline().apply(&mTextBox->getFillColorAnim(), mHighlightColor, 0.5);
 }
                                               
