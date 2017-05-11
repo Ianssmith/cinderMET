@@ -112,7 +112,9 @@ void View3D::draw()
         // Draw an arrow to the picked point along its normal.
         gl::ScopedGlslProg shader( gl::getStockShader( gl::ShaderDef().color().lambert() ) );
         gl::drawVector( pickedPoint + pickedNormal, pickedPoint );
+        drawVertices(mObjectBounds, 10, 1730, 1751, 2017, 1696);
     }
+   // drawVertices(mObjectBounds, 10, 1730, 1751, 2017, 1696);
 }
 
 void View3D::onMouseEvent(po::scene::MouseEvent &event)
@@ -169,7 +171,7 @@ bool View3D::performPicking( vec3 *pickedPoint, vec3 *pickedNormal )
     // Draw the object space bounding box in yellow. It will not animate,
     // because animation is done in world space.
     drawCube( mObjectBounds, Color( 1, 1, 0 ) );
-    drawVertices(mObjectBounds, 10, 1730, 1751, 2017, 1696);
+    //drawVertices(mObjectBounds, 10, 1730, 1751, 2017, 1696);
     
     // Draw the exact bounding box in orange.
     //drawCube( worldBoundsExact, Color( 1, 0.5f, 0 ) );
