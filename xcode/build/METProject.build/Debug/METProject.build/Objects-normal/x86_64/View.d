@@ -11,6 +11,7 @@ dependencies: \
   ../blocks/poScene/src/poScene/poTextureFit.h \
   /Users/ianssmith/Desktop/Parsons/Currents_Cinder/cinder_0.9.0_mac/cinderMET/xcode/../src/common.h \
   /Users/ianssmith/Desktop/Parsons/Currents_Cinder/cinder_0.9.0_mac/cinderMET/xcode/View.hpp \
+  /Users/ianssmith/Desktop/Parsons/Currents_Cinder/cinder_0.9.0_mac/cinderMET/xcode/popup.hpp \
+  /Users/ianssmith/Desktop/Parsons/Currents_Cinder/cinder_0.9.0_mac/cinderMET/blocks/poScene/src/poScene/poTextBox.h \
   /Users/ianssmith/Desktop/Parsons/Currents_Cinder/cinder_0.9.0_mac/cinderMET/xcode/METProject.hpp \
-  /Users/ianssmith/Desktop/Parsons/Currents_Cinder/cinder_0.9.0_mac/cinderMET/xcode/Buttons.hpp \
-  /Users/ianssmith/Desktop/Parsons/Currents_Cinder/cinder_0.9.0_mac/cinderMET/blocks/poScene/src/poScene/poTextBox.h
+  /Users/ianssmith/Desktop/Parsons/Currents_Cinder/cinder_0.9.0_mac/cinderMET/xcode/Buttons.hpp

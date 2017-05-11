@@ -13,6 +13,7 @@
 #include "poNodeContainer.h"
 #include "poShape.h"
 
+#include "popup.hpp"
 //#include "Controller.hpp"
 #include "DataManager.hpp"
 #include "../src/common.h"
@@ -43,7 +44,9 @@ public:
     
     void onViewMouseEvent(po::scene::MouseEvent &event);
     void onViewClickEvent(po::scene::MouseEvent &event);
+    void onViewMoveoutEvent(po::scene::MouseEvent &event, popupRef);
     
+    popupRef mpopup;
     
     
 protected:
@@ -56,8 +59,15 @@ private:
     int titlekeyval;
     std::string lookupval;
     
+    met::artWorkData lookupData(std::string key, met::objMap map);
+    
     met::artWorkData showPopup(met::objMap Odata, int keylookupval);
     met::artWorkData popupdata;
+    
+    void drawView(met::backgroundData data);
+    
+    std::map<int, string> titlelookup;
+    
     
     ShapeRef mArtBegin;
     ShapeRef mbeginoutline;
@@ -74,13 +84,5 @@ private:
     ci::Color mCountryC;
     ci::Color mBirthC;
     ci::Color mDeathC;
-    
-    void drawView(met::backgroundData data);
-    //void refreshData(met::artWorkData data);
-    
-    std::map<int, string> titlelookup;
-    
-    
-    
     
 };

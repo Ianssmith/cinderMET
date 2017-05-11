@@ -8,6 +8,7 @@
 
 #include "DataManager.hpp"
 #include "View.hpp"
+//#include "popup.hpp"
 #include "METProject.hpp"
 #include "../src/common.h"
 //#include "poNodeContainer.h"
@@ -56,12 +57,9 @@ void View::setup(met::backgroundData data, met::objMap Odata)
         mArtBegin->setFillColor(mBeginC);
         mArtBegin->setPosition(mBeginCenter);
         mArtBegin->setAlignment(po::scene::Alignment::CENTER_CENTER);
-        //mArtBegin->getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&View::onViewMouseEvent,mArtBegin));
-        //mArtBegin->getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&View::onViewClickEvent, mArtBegin));
+        mArtBegin->getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&View::onViewMouseEvent,this, std::placeholders::_1));
+        mArtBegin->getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&View::onViewClickEvent, this, std::placeholders::_1));
         addChild(mArtBegin);
-        
-        //button->getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&uiButton::onUIClickEvent, button));
-        //button->getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&uiButton::onUIMouseEvent, button));
         
         //____This is just another circle to make the begin dat circles look like they have no fill
         mbeginoutline = Shape::createCircle(mCircleRadius-3);
@@ -70,8 +68,8 @@ void View::setup(met::backgroundData data, met::objMap Odata)
         mbeginoutline->setAlignment(po::scene::Alignment::CENTER_CENTER);
         addChild(mbeginoutline);
         
-        //mbeginoutline->getSignal(po::scene::MouseEvent::Type::MOVE_INSIDE).connect(std::bind(&View::mouseHandler, this, std::placeholders::_1));
-        //mbeginoutline->getSignal(po::scene::MouseEvent::Type::DOWN_INSIDE).connect(std::bind(&View::mouseHandler, this, std::placeholders::_1));
+        mbeginoutline->getSignal(po::scene::MouseEvent::Type::MOVE_INSIDE).connect(std::bind(&View::onViewMouseEvent, this, std::placeholders::_1));
+        mbeginoutline->getSignal(po::scene::MouseEvent::Type::DOWN_INSIDE).connect(std::bind(&View::onViewClickEvent, this, std::placeholders::_1));
         
         //_____ This is the line connecting the begin and end date
         mArtLine = Shape::createRect((mEndCenter.x-mBeginCenter.x),0.5);
@@ -87,8 +85,8 @@ void View::setup(met::backgroundData data, met::objMap Odata)
         mArtEnd->setAlignment(po::scene::Alignment::CENTER_CENTER);
         addChild(mArtEnd);
         
-        //mArtEnd->getSignal(po::scene::MouseEvent::Type::MOVE_INSIDE).connect(std::bind(&View::mouseHandler, this, std::placeholders::_1));
-        //mArtEnd->getSignal(po::scene::MouseEvent::Type::DOWN_INSIDE).connect(std::bind(&View::mouseHandler, this, std::placeholders::_1));
+        mArtEnd->getSignal(po::scene::MouseEvent::Type::MOVE_INSIDE).connect(std::bind(&View::onViewMouseEvent, this, std::placeholders::_1));
+        mArtEnd->getSignal(po::scene::MouseEvent::Type::DOWN_INSIDE).connect(std::bind(&View::onViewClickEvent, this, std::placeholders::_1));
         
         //_____The donated date
         mArtDonated = Shape::createCircle(mCircleRadius);
@@ -97,31 +95,46 @@ void View::setup(met::backgroundData data, met::objMap Odata)
         mArtDonated->setAlignment(po::scene::Alignment::CENTER_CENTER);
         addChild(mArtDonated);
         
-        //mArtDonated->getSignal(po::scene::MouseEvent::Type::MOVE_INSIDE).connect(std::bind(&View::mouseHandler, this, std::placeholders::_1));
-        //mArtDonated->getSignal(po::scene::MouseEvent::Type::DOWN_INSIDE).connect(std::bind(&View::mouseHandler, this, std::placeholders::_1));
+        mArtDonated->getSignal(po::scene::MouseEvent::Type::MOVE_INSIDE).connect(std::bind(&View::onViewMouseEvent, this, std::placeholders::_1));
+        mArtDonated->getSignal(po::scene::MouseEvent::Type::DOWN_INSIDE).connect(std::bind(&View::onViewClickEvent, this, std::placeholders::_1));
+        //mArtDonated->getSignal(po::scene::MouseEvent::Type::MOVE).connect(std::bind(&View::onViewMoveoutEvent, this, std::placeholders::_1, mpopup));
         
         //vvv these arent in the data set yet vvv
         //mCountry;
         //mBirth;
         //mDeath;
     //getSignal(MouseEvent::DOWN_INSIDE).connect(std::bind(&AnimationSquare::showIndicator, this));
-        getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&View::onViewMouseEvent, this, std::placeholders::_1));
-        getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&View::onViewClickEvent, this, std::placeholders::_1));
     }
+        //getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&View::onViewMouseEvent, this, std::placeholders::_1));
+        //getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&View::onViewClickEvent, this, std::placeholders::_1));
 }
+
+//void View::onViewMoveoutEvent(po::scene::MouseEvent &event, popupRef popup_to_remove)
+//{
+//    popup_to_remove->setVisible(false);
+//}
 
 void View::onViewMouseEvent(po::scene::MouseEvent &event)
 {
-    //ci::app::timeline().apply(&event.getSource()->getScaleAnim(), ci::vec2(1.5f, 1.5f), 0.5);
-    //ci::app::timeline().appendTo(&event.getSource()->getScaleAnim(), ci::vec2(1.f, 1.f), 0.5);
+    ci::app::timeline().apply(&event.getSource()->getScaleAnim(), ci::vec2(1.5f, 1.5f), 0.2);
+    ci::app::timeline().appendTo(&event.getSource()->getScaleAnim(), ci::vec2(1.f, 1.f), 0.2);
 }
 void View::onViewClickEvent(po::scene::MouseEvent &event)
 {
     titlekeyval = event.getSource()->getDrawOrder();
+    std::cout<<titlekeyval<<std::endl;
     
     popupdata = showPopup(artWorkData, titlekeyval);
     
     std::cout<< popupdata.Artist << std::endl;
+    
+    mpopup = popup::create("Title: "+popupdata.Title +"\n\n Artist: "+popupdata.Artist+"\n\n Artist Nationality: "+popupdata.Nation+"\n\n Artist started work on piece: "+std::to_string(static_cast<int>(popupdata.beginDate))+"\n\n Artist completed piece: "+std::to_string(static_cast<int>(popupdata.endDate)));
+    addChild(mpopup);
+    mpopup->setFillColor(ci::Color(54.f/255, 55.f/255, 52.f/255));
+    mpopup->setStrokeColor(ci::Color(0,0,0));
+    mpopup->setPosition(event.getWindowPos());
+    //mpopup->getSignal(po::scene::MouseEvent::DOWN).connect(setVisible(false), this, std::placeholders::_1);
+    
     //std::cout<<event.getSource()<<std::endl;
     //p = &event.getSource()->getIndexPosition
     //met::backgroundData pt = &event.getSource()->getIndexPosition();
@@ -141,11 +154,15 @@ met::artWorkData View::showPopup(met::objMap Odata, int keylookupval)
         }
     }
     std::cout<<lookupval<<std::endl;
-    //popupdata = DataManager::getArtWorkData(lookupval, &Odata);
+    popupdata = lookupData(lookupval, Odata);
     
     return popupdata;
 }
-                                              
+
+met::artWorkData View::lookupData(std::string key, met::objMap map)
+{
+    return map[key];
+}
                                               
                                               
                                               
