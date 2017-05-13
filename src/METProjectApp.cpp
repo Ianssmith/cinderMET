@@ -1,12 +1,10 @@
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
-
 #include "METProject.hpp"
 #include "DataManager.hpp"
 #include "View.hpp"
 #include "common.h"
-
 #include "poScene.h"
 
 using namespace ci;
@@ -43,7 +41,6 @@ void METProjectApp::update()
 void METProjectApp::draw()
 {
     gl::clear( ci::Color(54.f/255, 55.f/255, 52.f/255));
-    //gl::color( mFillColor );
     scene->draw();
 }
 

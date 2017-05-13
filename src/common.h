@@ -1,13 +1,6 @@
-//
-//  common.h
-//  METProject
-//
-//  Created by ian s. smith on 5/4/17.
-//
-//
 
 #pragma once
-//#include <list>
+
 using namespace std;
 
 namespace met{
@@ -32,14 +25,10 @@ namespace met{
         float endDate;
         float birth;
         float death;
-        //float dims[2];
         float donationDate;
-        //append this one to baseurl to retrieve images
         std::string linkNum;
     };
 
     //alias detailed view struct
     typedef std::map<std::string, artWorkData> objMap;
-    
-    //std::vector<std::string> activeButtons;
 }

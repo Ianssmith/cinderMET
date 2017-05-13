@@ -1,19 +1,8 @@
-//
-//  Controller.cpp
-//  cinderMET01
-//
-//  Created by Kim Köhler on 18/04/17.
-//  and Ian Smith
-//
-//
-
 #include "METProject.hpp"
 #include "View.hpp"
 #include "DataManager.hpp"
 #include "poTextBox.h"
-//#include "Buttons.hpp"
 #include "../src/common.h"
-
 
 METProjectRef METProject::create()
 {
@@ -31,7 +20,6 @@ METProject::METProject()
     
 }
 
-
 void METProject::setup()
 {
     
@@ -39,18 +27,13 @@ void METProject::setup()
         std::string hello = "hello";
         activeB.push_back(hello);
     }
-    //mDataManager = DataManager::create();
     
     createDataManager();
     
     mInitView = mDataManager->DataManager::getInitialData();
     
     createUI();
-    
     createView(mInitView);
-    //createView3D(mInitView);
-    
-    
     
 }
 
@@ -69,13 +52,11 @@ void METProject::createUI()
     // ____Map keys and also the text for the buttons
     
     mButtonLabels = {
-        //"Boxes/Points",
         "Birth of Project",
         "Completion Year of Project",
-        "Year Donated to MET"//,
-        //"Artist Country",
-        //"Artist Birth",
-        //"Artist Death"
+        "Year Donated to MET",
+        "Artist Birth",
+        "Artist Death"
     };
     //_____makes the poscene container for the buttons
     mUIContainer = NodeContainer::create();
@@ -88,33 +69,22 @@ void METProject::createUI()
         mUIContainer->addChild(button);
         button->setAlpha(1)
             .setPosition(i*(button->getWidth()*1.25)+50, 0);
-        // MouseEvent::Type::UP_INSIDE
-        //button->getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&uiButton::onUIClickEvent, button, std::placeholders::_1));
-        button->getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&uiButton::onUIMouseEvent, button, std::placeholders::_1));
-        //button->getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&uiButton::onUIMouseEventBool, button, std::placeholders::_1));
 
-        //button->getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&uiButton::onUIClickEvent, button, std::placeholders::_1));
-        /*while (button->mPressed == true){
-            console() << "yes" << endl;
-        if (button->in_array(text, activeButtons) == false) {
-            activeButtons.insert(activeButtons.begin(), text);
-            activeButtons.pop_back();
-         }*/
-        //console() << button->activeButtons.size() << endl;
+        button->getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&uiButton::onUIMouseEvent, button, std::placeholders::_1));
+
+        /*This is where our problem currently is. The arrayobject has the correctdata when inside the buttons.cpp, but when printing them here they get wierd numbers instead of the strings we have created.*/
         for(int j = button->activeButtons.size(); j > 0; j--){
             console() << button->activeButtons[j] << endl;
-            //activeB.push_back(button->activeButtons[i]);
-            //activeB.insert(activeB.begin(), button->activeButtons[i]);
-            //activeB.pop_back();
+            activeB.insert(activeB.begin(), button->activeButtons[i]);
+            activeB.pop_back();
             
         }
         
         
     }
-    
-
-    
+    //Send this to View
     createView3D(mInitView, activeB);
+    
     uiButtonRef startYear = uiButton::create("1400 - earliest");
     uiButtonRef lastYear = uiButton::create("2016 - latest");
     mUIContainer->addChild(startYear);
@@ -129,7 +99,7 @@ void METProject::createUI()
     
 }
 
-//_____ makes the visualization
+//_____ makes the 2d visualization(currently not in use)
 
 void METProject::createView(met::backgroundData data)
 {
@@ -143,20 +113,7 @@ void METProject::createView(met::backgroundData data)
     
     ViewRef mView = View::create(data);
     mViewContainer->addChild(mView);
-    
-    
-        //alternative method calls create in a loop instead of create containing a loop
-         //for(int i=0;i<data.beginDates.size();i++){
-             //cout<<data.beginDates[i]<<endl;
-             //set circle values on data
-             //ci::vec2 mBeginCenter = ci::vec2(data.beginDates[i],(i*20)+100);
-             //ci::vec2 mEndCenter = ci::vec2(data.endDates[i],(i*20)+100);
-             //ci::vec2 mDonatedCenter = ci::vec2(data.donationDates[i],(i*20)+100);
-             //cout<<mBeginCenter<<endl;
-             //draw points
-             //mView = View::create(mBeginCenter, mEndCenter, mDonatedCenter);
-         //}
-    
+
 }
 
 void METProject::createView3D(met::backgroundData artData, std::vector<std::string> activeButtons)
@@ -169,7 +126,7 @@ void METProject::createView3D(met::backgroundData artData, std::vector<std::stri
     
     //_____ calls View create function and adds them to viewcontainer
     
-    View3DRef mView3D = View3D::create(artData/*, activeButtons*/);
+    View3DRef mView3D = View3D::create(artData, activeButtons);
     mView3DContainer->addChild(mView3D);
     
 }
