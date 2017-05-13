@@ -46,6 +46,9 @@ private:
     
     std::vector<std::string> mButtonLabels;
 	std::map<std::string, uiButtonRef> muiButtons;
+    std::vector<std::string> mActiveButtons;
+    //met::activeButtons mActiveButtons;
+    
     met::backgroundData mInitView;
     met::artWorkData mArtworkDetail;
     
@@ -62,12 +65,16 @@ private:
     void createDataManager();
     
     //3D View
-    void createView3D(met::backgroundData);
+    void createView3D(met::backgroundData, std::vector<std::string>);
     
     //create UI
     void createUI();
     
     //create viz
     void createView(met::backgroundData);
+    
+    std::vector<std::string> activeB;
+    //array contatining activated buttons
+    //std::vector<std::string> activeButtons;
 
 };

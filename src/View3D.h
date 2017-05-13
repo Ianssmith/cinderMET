@@ -33,8 +33,8 @@ class View3D
 //: public App
 {
 public:
-    static View3DRef create(met::backgroundData);
-    virtual void setup(met::backgroundData);
+    static View3DRef create(met::backgroundData/*, std::vector<std::string>*/);
+    virtual void setup(met::backgroundData/*, std::vector<std::string>*/);
     void update();
     void draw();
     
@@ -69,8 +69,9 @@ private:
     geom::WireCube      mCube;
     ivec2				mMousePos;		//! Keep track of the mouse.
     geom::WireCube      *p;
-    met::backgroundData    artObject;
-    
+    met::backgroundData   artObject;
+    std::vector<std::string> activeObject;
+    //std::map<int, string> titlelookup;
     
     void onMouseEvent(po::scene::MouseEvent &event);
     bool                mIsPressed;
@@ -78,7 +79,7 @@ private:
     
     bool performPicking( vec3 *pickedPoint, vec3 *pickedNormal );
     void drawCube( const AxisAlignedBox &bounds, const Color &color );
-    void drawVertices( const AxisAlignedBox &bounds, met::backgroundData artData);
+    void drawVertices( const AxisAlignedBox &bounds, met::backgroundData artData/*, std::vector<std::string> activeButtons*/);
     float map(float x, float in_min, float in_max, float out_min, float out_max);
     
     

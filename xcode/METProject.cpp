@@ -10,6 +10,8 @@
 #include "METProject.hpp"
 #include "View.hpp"
 #include "DataManager.hpp"
+#include "poTextBox.h"
+//#include "Buttons.hpp"
 #include "../src/common.h"
 
 
@@ -33,6 +35,10 @@ METProject::METProject()
 void METProject::setup()
 {
     
+    for(int i = 0; i < 3; i++){
+        std::string hello = "hello";
+        activeB.push_back(hello);
+    }
     //mDataManager = DataManager::create();
     
     createDataManager();
@@ -42,7 +48,7 @@ void METProject::setup()
     createUI();
     
     createView(mInitView);
-    createView3D(mInitView);
+    //createView3D(mInitView);
     
     
     
@@ -76,7 +82,7 @@ void METProject::createUI()
     addChild(mUIContainer);
     mUIContainer->setPosition(30,30);
     
-    //_____ makes the buttons using the buttonLabels
+    //_____ makes the buttons using the buttongetLabels
     for (int i=0;i < mButtonLabels.size(); i++){
         uiButtonRef button = uiButton::create(mButtonLabels[i]);
         mUIContainer->addChild(button);
@@ -85,10 +91,30 @@ void METProject::createUI()
         // MouseEvent::Type::UP_INSIDE
         //button->getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&uiButton::onUIClickEvent, button, std::placeholders::_1));
         button->getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&uiButton::onUIMouseEvent, button, std::placeholders::_1));
+        //button->getSignal(po::scene::MouseEvent::MOVE_INSIDE).connect(std::bind(&uiButton::onUIMouseEventBool, button, std::placeholders::_1));
+
         //button->getSignal(po::scene::MouseEvent::DOWN_INSIDE).connect(std::bind(&uiButton::onUIClickEvent, button, std::placeholders::_1));
+        /*while (button->mPressed == true){
+            console() << "yes" << endl;
+        if (button->in_array(text, activeButtons) == false) {
+            activeButtons.insert(activeButtons.begin(), text);
+            activeButtons.pop_back();
+         }*/
+        //console() << button->activeButtons.size() << endl;
+        for(int j = button->activeButtons.size(); j > 0; j--){
+            console() << button->activeButtons[j] << endl;
+            //activeB.push_back(button->activeButtons[i]);
+            //activeB.insert(activeB.begin(), button->activeButtons[i]);
+            //activeB.pop_back();
+            
+        }
         
         
     }
+    
+
+    
+    createView3D(mInitView, activeB);
     uiButtonRef startYear = uiButton::create("1400 - earliest");
     uiButtonRef lastYear = uiButton::create("2016 - latest");
     mUIContainer->addChild(startYear);
@@ -99,6 +125,7 @@ void METProject::createUI()
     lastYear->setStrokeColor(ci::Color(0,0,0));
     startYear->setPosition(22,650);
     lastYear->setPosition(850,650);
+    
     
 }
 
@@ -132,17 +159,17 @@ void METProject::createView(met::backgroundData data)
     
 }
 
-void METProject::createView3D(met::backgroundData artData)
+void METProject::createView3D(met::backgroundData artData, std::vector<std::string> activeButtons)
 {
     //_____makes poscene container
     
     mView3DContainer = NodeContainer::create();
     addChild(mView3DContainer);
-    mViewContainer->setPosition(0,0);
+    mView3DContainer->setPosition(0,0);
     
     //_____ calls View create function and adds them to viewcontainer
     
-    View3DRef mView3D = View3D::create(artData);
+    View3DRef mView3D = View3D::create(artData/*, activeButtons*/);
     mView3DContainer->addChild(mView3D);
     
 }

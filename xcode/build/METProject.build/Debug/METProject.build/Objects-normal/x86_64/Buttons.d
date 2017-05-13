@@ -9,4 +9,5 @@ dependencies: \
   ../blocks/poScene/src/poScene/poEvents.h \
   /Users/kimkohler/Desktop/cinder_0.9.0_mac/cinderMET/blocks/poScene/src/poScene/poTextBox.h \
   /Users/kimkohler/Desktop/cinder_0.9.0_mac/cinderMET/blocks/poScene/src/poScene/poShape.h \
-  ../blocks/poScene/src/poScene/poTextureFit.h
+  ../blocks/poScene/src/poScene/poTextureFit.h \
+  /Users/kimkohler/Desktop/cinder_0.9.0_mac/cinderMET/xcode/../src/common.h

@@ -50,6 +50,8 @@ private:
     std::vector<int> endDates;
     std::vector<int> donationDates;
     std::vector<std::string> titles;
+    std::vector<int> birthDates;
+    std::vector<int> deathDates;
     
     std::vector<std::string> linkNum;
     
@@ -59,7 +61,7 @@ private:
     
     //std::map<string,objData> parsejson( DataSourceRef);
     met::objMap parsejson( ci::DataSourceRef);
-    met::backgroundData convertYears(std::vector<int>,std::vector<int>,std::vector<int>,std::vector<std::string>);
+    met::backgroundData convertYears(std::vector<int>,std::vector<int>,std::vector<int>,std::vector<std::string>, std::vector<int>, std::vector<int>);
     
     
 };

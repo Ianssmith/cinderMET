@@ -13,10 +13,10 @@ using namespace std;
 using namespace po::scene;
 
 
-View3DRef View3D::create(met::backgroundData artData)
+View3DRef View3D::create(met::backgroundData artData/*, std::vector<std::string> activeButtons*/)
 {
     View3DRef ref = std::shared_ptr<View3D>(new View3D());
-    ref->setup(artData);
+    ref->setup(artData/*, activeButtons*/);
     return ref;
     
     //ViewRef ref = std::shared_ptr<View>(new View());
@@ -37,9 +37,10 @@ View3D::~View3D()
     
 }
 
-void View3D::setup(met::backgroundData artData)
+void View3D::setup(met::backgroundData artData/*, std::vector<std::string> activeButtons*/)
 {
     artObject = artData;
+    //activeObject = activeButtons;
     // Create the mesh.
     mCube = geom::WireCube().subdivisions( 100 );
     //*p = mCube.subdivisionsX(1);
@@ -116,7 +117,7 @@ void View3D::draw()
         // Draw an arrow to the picked point along its normal.
         gl::ScopedGlslProg shader( gl::getStockShader( gl::ShaderDef().color().lambert() ) );
         gl::drawVector( pickedPoint + pickedNormal, pickedPoint );
-        drawVertices(mObjectBounds, artObject);
+        drawVertices(mObjectBounds, artObject/*, activeObject*/);
     }
    // drawVertices(mObjectBounds, 10, 1730, 1751, 2017, 1696);
 }
@@ -242,7 +243,7 @@ void View3D::drawCube( const AxisAlignedBox &bounds, const Color & color )
 }
 
 //These parameters will be replaced with the struct objects.
-void View3D::drawVertices( const AxisAlignedBox &bounds, met::backgroundData artData)
+void View3D::drawVertices( const AxisAlignedBox &bounds, met::backgroundData artData/*, std::vector<std::string> activeButtons*/)
 {
     for(int i = 0; i < artData.beginDates.size(); i++){
         ci::gl::color(Color( 0, 1, 1 ));
@@ -253,7 +254,7 @@ void View3D::drawVertices( const AxisAlignedBox &bounds, met::backgroundData art
         //donated
         ci::vec3 pointDonated = ci::vec3(0.5, map(i, 0, artData.beginDates.size(), -0.5, 0.5) , map(artData.donationDates[i], 1900, 2020, -0.5, 0.5));
         //artistborn 1500
-        ci::vec3 pointBorn = ci::vec3(map(1500, 1400, 2020, -0.5, 0.5), map(i, 0, artData.beginDates.size(), -0.5, 0.5) , 0.5);
+        ci::vec3 pointBorn = ci::vec3(map(artData.birthDates[i], 1400, 2020, -0.5, 0.5), map(i, 0, artData.beginDates.size(), -0.5, 0.5) , 0.5);
         
         //Points
         gl::drawSphere(bounds.getCenter() + pointBegin, 0.01);
@@ -266,8 +267,12 @@ void View3D::drawVertices( const AxisAlignedBox &bounds, met::backgroundData art
         gl::drawLine(bounds.getCenter() + pointEnd, bounds.getCenter() + pointDonated);
         gl::drawLine(bounds.getCenter() + pointDonated, bounds.getCenter() + pointBorn);
         gl::drawLine(bounds.getCenter() + pointBorn, bounds.getCenter() + pointBegin);
+        
+        //titlelookup[i] = artData.titles[i];
+        //console() << titlelookup[i] << endl;
         //console() << "BeginDates: " << artData.beginDates[i] << endl;
         //console() << "pointBegin: " << pointBegin << endl;
+        //console() << activeButtons[0] << endl;
     }
 }
 

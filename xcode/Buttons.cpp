@@ -8,6 +8,7 @@
 
 #include "Buttons.hpp"
 #include "cinder/app/App.h"
+#include "../src/common.h"
 
 //#include "cinder/Text.h"
 using namespace ci::app;
@@ -32,7 +33,10 @@ uiButton::~uiButton(){};
 
 void uiButton::setup(std::string name)
 {
-    
+    for(int i = 0; i < 3; i++){
+    std::string hello = "hello";
+    activeButtons.push_back(hello);
+    }
     //create button: called in the createUI function of METProject.cpp
     // ### this part v
     ci::TextBox textbox = ci::TextBox();
@@ -51,6 +55,7 @@ void uiButton::setup(std::string name)
     //mTextBox->getSignal(MouseEvent::UP_INSIDE).connect(std::bind(&uiButton::onUIMouseEvent, this, std::placeholders::_1));
     //mTextBox->getSignal(MouseEvent::MOVE_INSIDE).connect(std::bind(&uiButton::onUIMouseEvent, this, std::placeholders::_1));
     addChild(mTextBox);
+    //mPressed = false;
 }
 /*
 void uiButton::onUIMouseEvent()
@@ -67,23 +72,46 @@ void uiButton::onUIClickEvent()
 
 void uiButton::onUIMouseEvent(po::scene::MouseEvent &event)
 {
+    //&event.get
     ci::app::timeline().apply(&mTextBox->getFillColorAnim(), mColor, 0.1);
     ci::app::timeline().appendTo(&mTextBox->getFillColorAnim(), ci::Color(1,1,1), 0.5);
     //console() << "over" << std::endl;
     ci::TextBox button_copy = mTextBox->getCiTextBoxCopy();
-    std::cout << button_copy.getText() << std::endl;
+    //std::cout << button_copy.getText() << std::endl;
+    std::string text = button_copy.getText();
+    //mPressed = true;
+    
+    if (in_array(text, activeButtons) == false) {
+        
+        activeButtons.insert(activeButtons.begin(), text);
+        //activeButtons.push_back(text);
+        activeButtons.pop_back();
+    }
     
 }
 
 void uiButton::onUIClickEvent(po::scene::MouseEvent &event)
 {
     ci::TextBox button_copy = mTextBox->getCiTextBoxCopy();
-    std::cout << button_copy.getText() << std::endl;
+    //std::cout << button_copy.getText() << std::endl;
+    
     ci::app::timeline().apply(&mTextBox->getFillColorAnim(), mHighlightColor, 0.5);
+    
 }
+
+/*bool uiButton::onUIMouseEventBool(po::scene::MouseEvent &event){
+    
+}*/
+
+bool uiButton::in_array(std::string &value, std::vector<string> &array)
+{
+    return std::find(array.begin(), array.end(), value) != array.end();
+}
+
+std::vector<std::string> uiButton::getArray(){return activeButtons;};
                                               
                                               
-                                              
+
                                               
                                               
                 

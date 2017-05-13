@@ -44,7 +44,7 @@ void DataManager::setup()
     //artWorks = parsejson(DataSourceRef( ci::app::loadAsset("metjson.json")));
     
     //convert dates into scale for plotting and return to view struct
-    mInitialView = convertYears(beginDates, endDates, donationDates, titles);
+    mInitialView = convertYears(beginDates, endDates, donationDates, titles, birthDates, deathDates);
     
     //cout<<beginDates[0]<<endl;
 }
@@ -57,7 +57,7 @@ met::objMap DataManager::parsejson(DataSourceRef file){
     try{
         const JsonTree json( file );
         met::objMap artWorkMap;
-            for( auto &feature : json["objects"].getChildren() ){
+            for( auto &feature : json.getChildren() ){
                 //artwork detail data
                 met::artWorkData artStruct;
                 artStruct.Title = feature["Title"].getValue<string>();
@@ -69,6 +69,8 @@ met::objMap DataManager::parsejson(DataSourceRef file){
                 //artStruct.dims[0] = feature["cm_Dimensions"][0].getValue<float>();
                 artStruct.linkNum = feature["url_num"].getValue<string>();
                 artWorkMap[feature["Title"].getValue<string>()] = artStruct;
+                artStruct.birth = feature["Artist Begin Date"][0].getValue<float>();
+                artStruct.death = feature["Artist End Date"][0].getValue<float>();
                 
                 //initial view 
                 titles.push_back(feature["Title"].getValue<string>());
@@ -76,6 +78,8 @@ met::objMap DataManager::parsejson(DataSourceRef file){
                 beginDates.push_back(feature["Object Begin Date"].getValue<float>());
                 endDates.push_back(feature["Object End Date"].getValue<float>());
                 donationDates.push_back(feature["Donation_Date"][0].getValue<float>());
+                birthDates.push_back(feature["Artist Begin Date"][0].getValue<float>());
+                deathDates.push_back(feature["Artist End Date"][0].getValue<float>());
                 //cout<<beginDates[0]<<endl;
             }
         return artWorkMap;
@@ -87,7 +91,7 @@ met::objMap DataManager::parsejson(DataSourceRef file){
 }
 
 //_____Converts year values into values scaled for the drawing window
-met::backgroundData DataManager::convertYears(std::vector<int> bdates,std::vector<int> edates,std::vector<int> ddates,std::vector<std::string> title){
+met::backgroundData DataManager::convertYears(std::vector<int> bdates,std::vector<int> edates,std::vector<int> ddates,std::vector<std::string> title, std::vector<int> birthdates, std::vector<int> deathdates){
     //int mindate = 1350;
     //int maxdate = 2017;
     
@@ -97,6 +101,8 @@ met::backgroundData DataManager::convertYears(std::vector<int> bdates,std::vecto
         initView.endDates.push_back(edates[i]);
         initView.donationDates.push_back(ddates[i]);
         initView.titles.push_back(title[i]);
+        initView.birthDates.push_back(birthdates[i]);
+        initView.deathDates.push_back(deathdates[i]);
         
         //cout<<initView.beginDates[i]<<endl;
     }

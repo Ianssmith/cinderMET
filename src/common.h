@@ -7,6 +7,8 @@
 //
 
 #pragma once
+//#include <list>
+using namespace std;
 
 namespace met{
     //define data struct for initial view
@@ -15,6 +17,8 @@ namespace met{
         std::vector<float> endDates;
         std::vector<float> donationDates;
         std::vector<std::string> titles;
+        std::vector<float> birthDates;
+        std::vector<float> deathDates;
         //vector<string> linkNum;
     };
     
@@ -26,6 +30,8 @@ namespace met{
         std::string Nation;
         float beginDate;
         float endDate;
+        float birth;
+        float death;
         //float dims[2];
         float donationDate;
         //append this one to baseurl to retrieve images
@@ -34,4 +40,6 @@ namespace met{
 
     //alias detailed view struct
     typedef std::map<std::string, artWorkData> objMap;
+    
+    //std::vector<std::string> activeButtons;
 }
