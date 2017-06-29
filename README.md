@@ -1,4 +1,4 @@
-# VISUALIZATION OF DATA FROM THE PICTURING MATH EXHIBITION AT THE MET MUSEUM
+# Visualization of data from the picturing math exhibition at the met museum
 ### By Kim Köhler and Ian Smith
 
 ------
